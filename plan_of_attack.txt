@@ -1,0 +1,97 @@
+===================================
+| Introduction
+===================================
+Ben and Amir will work together side by side for the project and we are using Git and GitHub for version control.
+Amir will work on the Grid, Quadris, and Level classes, while Ben will work on the Block and Cell classes. Since
+we will be working closely together, if one finishes before the other then they can contribute to the other's work.
+
+===================================
+| Classes, files, general system
+===================================
+
+class Level
+  - has_a Block
+  - produceBlock()
+  - char getNextBlockType()
+
+class Level0
+class Level1
+class Level2
+class Level3
+
+class Quadris
+  - has_a Grid
+  - has_a Level
+  - main()
+  - Support different command line options
+  - Keep track of the score, highScore, level
+
+class Cell
+  - int x, int y
+  - bool active
+  - char c
+  - draw()
+  - getX(), getY()
+
+class Block
+  - has_a Grid
+  - has 4 Cells (pointers)
+  - clockwise()
+  - counterclockwise()
+  - moveLeft()
+  - moveRight()
+  - isStopped()
+  - drop()
+
+class Grid
+  - [18][10] Cells
+  - getCellAt(int x, int y)
+  - clear()
+  - int clearLines() // run after currentBlock->isStopped()
+  - << friend
+
+======================
+| Due Dates
+======================
+
+March 26, Wednesday:
+  - A general skeleton of the different classes should be completed, excluding the logic for Level1, Level2, Level3
+  - Makefile
+  - A compilable program that allows us to display a grid and at least 1 type of block and implement the support to move the block left to right on the text display
+  - Excludes rotation, as well as most other commands and the multiplier prefix
+
+March 31, Monday:
+  - Implement working versions of the Level classes, as well as the score and highScore
+  - Implement the rotation functionality of blocks as well as support for all kinds of blocks
+  - Implement multiplier prefix as well as all other commands
+  - A working version of the final product - include rotation implementations and mostly working functionality in terms of displaying and playing the game.
+
+April 3, Thursday:
+  - Implement the graphical component which mirrors the functionality as the text display.
+  - Optimizations, bug fixes as a result of lots of testing. We will practice our presentation at this point as well.
+
+======================
+| Question 1
+======================
+
+By making each block inherit from a base class Block such that the configuration of the cells that it points to is determined in the subclass itself. Furthermore, set the cell pointers to be private so that they cannot be changed after the fact. Lastly, make them constant so you must use a member initialization list when creating a block of that type.
+
+======================
+| Question 2
+======================
+
+Keep a count of the number of blocks that have been dropped. Each time a block is generated, add it to the tail of a linked list. Once the number of blocks that have been dropped is equal or greater than 10, then start from the tail of the linked list and remove that node as well as the block if it hasn't been cleared yet. This means there has to be a method on the Block that checks if it has been cleared.
+
+======================
+| Question 3
+======================
+
+Using the Factory pattern we can have each level inherit from the base Level class. The base class Level will contain a virtual method to generate a new block. Each specific level inherits from Level and implements the functionality that calculates which kind of block to create. This way, we only have to recompile the smaller subclass instead of continually adding onto the functionality of the base Level class.
+
+======================
+| Question 4
+======================
+
+We use a map of type string to a pointer of a function. Adding a new command just means entering the command string into the map, and creating a function which runs that command. Renaming a function is as simple as erasing the key that maps to that particular function pointer, and adding a new key with the new name. In order to accomodate for the autocomplete, use a Trie with similar functionality we did for a previous assignment. Populate the Trie with the keys of the map.
+
+
