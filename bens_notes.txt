@@ -1,5 +1,56 @@
+> Commands to use
+
 git status
 git add .
 git pull --rebase
 git push origin master
 git diff
+
+> Design
+
+Factory method for Level
+Factory method for a Block
+
+class Level
+  - has_a Block
+  - produceBlock()
+  - char getNextBlockType()
+
+class Level0
+class Level1
+class Level2
+class Level3
+
+class Quadris
+  - has_a Grid
+  - has_a Level
+  - main()
+  - Support different command line options
+  - Keep track of the score, highScore, level
+
+class Cell
+  - int x, int y
+  - bool active
+  - char c
+  - draw()
+  - getX(), getY()
+
+class Block
+  - has_a Grid
+  - has 4 Cells (pointers)
+  - clockwise()
+  - counterclockwise()
+  - moveLeft()
+  - moveRight()
+  - isStopped()
+  - drop()
+  ? How do we rotate?
+
+class Grid
+  - [18][10] Cells
+  - getCellAt(int x, int y)
+  - clear()
+  - int clearLines() // run after currentBlock->isStopped()
+  - << friend
+
+executable called `quadris`
