@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
     // If there is none, this should be empty
     int multiplier;
     iss >> multiplier;
-    bool hasMultiplier = (multiplier == NULL)
+    bool hasMultiplier = (multiplier == NULL);
 
     // TODO: Use the multiplier method
     // Read in a command
