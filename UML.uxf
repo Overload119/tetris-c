@@ -56,8 +56,8 @@ y:int
 active:bool
 --
 +draw()
-+getX()
-+getY()
++getX(Cell *current)
++getY(Cell *current)
 </panel_attributes>
     <additional_attributes/>
   </element>
