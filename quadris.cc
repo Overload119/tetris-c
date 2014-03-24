@@ -59,6 +59,7 @@ int main(int argc, char* argv[]) {
     iss >> multiplier;
     bool hasMultiplier = (multiplier == NULL)
 
+    // TODO: Use the multiplier method
     // Read in a command
     string command;
     iss >> command;

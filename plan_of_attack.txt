@@ -11,7 +11,7 @@ we will be working closely together, if one finishes before the other then they 
 
 class Level
   - has_a Block
-  - produceBlock()
+  - createBlock()
   - char getNextBlockType()
 
 class Level0

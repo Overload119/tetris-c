@@ -13,7 +13,7 @@ Factory method for a Block
 
 class Level
   - has_a Block
-  - produceBlock()
+  - createBlock()
   - char getNextBlockType()
 
 class Level0
