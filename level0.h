@@ -6,6 +6,7 @@
 #include "level.h"
 
 class Level0 : public Level {
+  istream *input;
   public:
     Level0(Grid* grid);
     ~Level0();

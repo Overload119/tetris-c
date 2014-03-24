@@ -82,7 +82,7 @@ active:bool
     </coordinates>
     <panel_attributes>/Level/
 --
-/+produceBlock():Block */
+/+createBlock():Block */
 +getNextBlockType():char
 
 </panel_attributes>
@@ -109,7 +109,7 @@ active:bool
     </coordinates>
     <panel_attributes>Level1
 --
-+produceBlock()</panel_attributes>
++createBlock()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -133,7 +133,7 @@ active:bool
     </coordinates>
     <panel_attributes>Level2
 --
-+produceBlock()</panel_attributes>
++createBlock()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -157,7 +157,7 @@ active:bool
     </coordinates>
     <panel_attributes>Level3
 --
-+produceBlock()</panel_attributes>
++createBlock()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -181,5 +181,29 @@ active:bool
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>30;30;200;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>10</x>
+      <y>140</y>
+      <w>170</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Level0
+--
++createBlock()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>150</x>
+      <y>150</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>50;30;30;30</additional_attributes>
   </element>
 </diagram>
