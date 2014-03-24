@@ -24,5 +24,10 @@ Block::Block(char type){
     cells[1] = getCellAt(1,4);
     cells[2] = getCellAt(1,3);
     cells[3] = getCellAt(2,3);
+  } else if (type == 'Z'){
+    cells[0] = getCellAt(0,3);
+    cells[1] = getCellAt(1,3);
+    cells[2] = getCellAt(1,4);
+    cells[3] = getCellAt(2,4);
   }
 }
