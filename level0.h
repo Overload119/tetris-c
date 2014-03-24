@@ -12,7 +12,7 @@ class Level0 : public Level {
     ~Level0();
     void setSeed(int n);
     void readFromFile(string path);
-    Block* produceBlock();
+    Block* createBlock();
 };
 
 #endif

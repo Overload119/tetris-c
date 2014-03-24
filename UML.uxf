@@ -17,6 +17,7 @@
 +counterClockwise()
 +moveLeft()
 +moveRight()
++moveDown()
 +isStopped()
 +drop()
 

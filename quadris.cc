@@ -66,7 +66,9 @@ int main(int argc, char* argv[]) {
     if (command == "left") {
       currentBlock->moveLeft();
     } else if (command == "right") {
+      currentBlock->moveRight();
     } else if (command == "down") {
+      currentBlock->moveDown();
     }
 
     if (currentBlock->isStopped()) {
