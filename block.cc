@@ -9,5 +9,10 @@ Block::Block(char type){
     cells[1] = getCellAt(1,3);
     cells[2] = getCellAt(2,3);
     cells[3] = getCellAt(3,3);
+  } else if (type == 'L'){
+    cells[0] = getCellAt(0,4);
+    cells[1] = getCellAt(1,4);
+    cells[2] = getCellAt(2,4);
+    cells[3] = getCellAt(2,3);
   }
 }
