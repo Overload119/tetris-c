@@ -76,7 +76,10 @@ int main(int argc, char* argv[]) {
 
     int points = level->calculateScore();
     if (points > 0) {
-
+      score += points;
+      if (score > highScore) {
+        highScore = score;
+      }
     }
 
   }
