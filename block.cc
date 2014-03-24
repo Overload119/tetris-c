@@ -31,3 +31,19 @@ Block::Block(char type){
     cells[3] = getCellAt(2,4);
   }
 }
+
+void Block::moveRight(){ //what prints the cell?
+  int newX[4];
+  int newY[4];
+  for (int i = 0; i < 3; ++i){
+    newX[i] = cell[i]->getX() + 1;
+    newY[i] = cell[i]->getY();
+    cell[i] = getCellAt(newX, newY);
+  }
+}
+
+void Block::moveLeft(){
+  int newX[4];
+  int newY[4];
+  for (int i = 0; i < 3,)
+}

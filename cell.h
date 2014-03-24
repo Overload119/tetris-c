@@ -10,6 +10,8 @@ public:
     void draw(); //only needed for graphical interface, not text display
     int getX();
     int getY();
+    void turnOff();
+    void turnOn();
 };
 
 #endif
