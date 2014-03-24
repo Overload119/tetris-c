@@ -5,8 +5,8 @@
 #include "grid.h"
 
 class Level {
+  int getRandomNumber();
   protected:
-    int seed;
     Grid* grid;
   public:
     void setSeed(int n);
