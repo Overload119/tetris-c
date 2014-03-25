@@ -10,3 +10,10 @@ int Cell::getY(Cell *current){
     return y;
 }
 
+void Cell::turnOff(){
+  active = false;
+}
+
+void Cell::turnOn(){
+  active = true;
+}
