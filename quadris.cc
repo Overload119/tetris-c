@@ -18,6 +18,10 @@ bool isDown(const string &input) {
   return (input == "do" || input == "dow" || input == "down");
 }
 
+bool isDrop(const string &input) {
+  return (input == "dr" || input == "dro" || input == "drop");
+}
+
 int main(int argc, char* argv[]) {
   // Read and parse the commandline arguments
   // Defaults
@@ -88,12 +92,14 @@ int main(int argc, char* argv[]) {
         currentBlock->moveRight();
       } else if (isDown(command)) {
         currentBlock->moveDown();
-      }
+      } else if (isDrop(command)) {
+        currentBlock->drop();
 
-      if (currentBlock->isStopped()) {
+        // The block is now dropped, generate the next one
         delete currentBlock;
         currentBlock = level->createBlock();
 
+        // Check state of the grid and run scoring code
         int rowsCleared = grid.checkAndClearRows();
         if (rowsCleared > 0) {
           // When row is cleared, score points equal to current level plus number of cleared rows squared
@@ -104,7 +110,6 @@ int main(int argc, char* argv[]) {
           }
         }
       }
-
     }
 
   }
