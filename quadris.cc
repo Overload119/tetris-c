@@ -77,13 +77,15 @@ int main(int argc, char* argv[]) {
     if (currentBlock->isStopped()) {
       delete currentBlock;
       currentBlock = level->createBlock();
-    }
 
-    int points = level->calculateScore();
-    if (points > 0) {
-      score += points;
-      if (score > highScore) {
-        highScore = score;
+      int rowsCleared = grid.checkAndClearRows();
+      if (rowsCleared > 0) {
+        // When row is cleared, score points equal to current level plus number of cleared rows squared
+        int points = (rowsCleared + currentLevel) * (rowsCleared + currentLevel);
+        score += points;
+        if (score > highScore) {
+          highScore = score;
+        }
       }
     }
 
