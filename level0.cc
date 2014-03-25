@@ -13,7 +13,7 @@ Block* Level0::createBlock() {
   char blockType;
   input >> blockType;
 
-  Block *b = new Block(blockType);
+  Block *b = new Block(blockType, grid);
   return b;
 }
 
