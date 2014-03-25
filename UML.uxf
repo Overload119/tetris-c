@@ -5,7 +5,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>580</x>
-      <y>130</y>
+      <y>120</y>
       <w>210</w>
       <h>150</h>
     </coordinates>
@@ -28,7 +28,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>820</x>
-      <y>130</y>
+      <y>120</y>
       <w>210</w>
       <h>100</h>
     </coordinates>
@@ -46,7 +46,7 @@ theCells[18][10]:Cells*
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>570</x>
-      <y>480</y>
+      <y>470</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -57,6 +57,8 @@ y:int
 active:bool
 --
 +draw()
++isActive()
++getChar()
 +getX(Cell *current)
 +getY(Cell *current)
 </panel_attributes>
@@ -66,7 +68,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>710</x>
-      <y>200</y>
+      <y>190</y>
       <w>230</w>
       <h>300</h>
     </coordinates>
@@ -77,7 +79,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>200</x>
-      <y>130</y>
+      <y>120</y>
       <w>210</w>
       <h>80</h>
     </coordinates>
@@ -94,7 +96,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>640</x>
-      <y>250</y>
+      <y>240</y>
       <w>50</w>
       <h>250</h>
     </coordinates>
@@ -105,7 +107,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>0</x>
-      <y>280</y>
+      <y>270</y>
       <w>170</w>
       <h>70</h>
     </coordinates>
@@ -118,7 +120,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>80</x>
-      <y>180</y>
+      <y>170</y>
       <w>200</w>
       <h>120</h>
     </coordinates>
@@ -129,7 +131,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>200</x>
-      <y>280</y>
+      <y>270</y>
       <w>170</w>
       <h>70</h>
     </coordinates>
@@ -142,7 +144,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>280</x>
-      <y>180</y>
+      <y>170</y>
       <w>50</w>
       <h>120</h>
     </coordinates>
@@ -153,7 +155,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>410</x>
-      <y>280</y>
+      <y>270</y>
       <w>170</w>
       <h>70</h>
     </coordinates>
@@ -166,7 +168,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>320</x>
-      <y>180</y>
+      <y>170</y>
       <w>200</w>
       <h>120</h>
     </coordinates>
@@ -177,7 +179,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>380</x>
-      <y>140</y>
+      <y>130</y>
       <w>220</w>
       <h>50</h>
     </coordinates>
@@ -188,7 +190,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>10</x>
-      <y>140</y>
+      <y>130</y>
       <w>170</w>
       <h>70</h>
     </coordinates>
@@ -201,7 +203,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>90</x>
-      <y>80</y>
+      <y>70</y>
       <w>130</w>
       <h>90</h>
     </coordinates>
