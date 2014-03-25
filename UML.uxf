@@ -61,6 +61,8 @@ active:bool
 +getChar()
 +getX(Cell *current)
 +getY(Cell *current)
++turnOff()
++turnOn();
 </panel_attributes>
     <additional_attributes/>
   </element>
