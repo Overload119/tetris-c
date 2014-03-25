@@ -14,7 +14,7 @@
 -Cells[4]: Cell *
 --
 +clockwise()
-+Blcok(char type, Grid *grid);
++Block(char type, Grid *grid);
 +counterClockwise()
 +moveLeft()
 +moveRight()
