@@ -5,11 +5,13 @@
 
 class block{
   cell *cells[4];
+  Grid *grid;
 public:
   void clockwise();
   void counterClockwise();
   void moveLeft();
   void moveRight();
+  void moveDown();
   bool isStopped();
   void drop();
   Block(char type, Grid *grid);

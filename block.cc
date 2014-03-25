@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Block::Block(char type, Grid *grid){
+Block::Block(char type, Grid *grid):grid(grid){
   if (type == 'I'){
     cells[0] = grid->getCellAt(0,3);
     cells[1] = grid->getCellAt(1,3);
@@ -40,11 +40,18 @@ void Block::moveRight(){ //what prints the cell?
     newX[i] = cell[i]->getX() + 1;
     newY[i] = cell[i]->getY();
     cell[i] = getCellAt(newX, newY);
+    cell[i]->turnOn;
   }
 }
 
 void Block::moveLeft(){
   int newX[4];
   int newY[4];
-  for (int i = 0; i < 3,)
+  for (int i = 0; i < 3; ++i){
+    cell[i]->turnOff();
+    newX[i] = cell[i]->getX() - 1;
+    newY[i] = cell[i]->getY();
+    cell[i] = getCellAt(newX, newY);
+    cell[i]->turnOn;
+  }
 }
