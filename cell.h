@@ -12,6 +12,7 @@ public:
     int getY();
     void turnOff();
     void turnOn();
+    bool isActive();
 };
 
 #endif

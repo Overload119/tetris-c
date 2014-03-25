@@ -55,3 +55,9 @@ void Block::moveLeft(){
     cell[i]->turnOn;
   }
 }
+
+void Block::moveDown(){
+  int newY[4];
+  int newX[4];
+
+}
