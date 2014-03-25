@@ -5,15 +5,16 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>580</x>
-      <y>120</y>
+      <y>80</y>
       <w>210</w>
-      <h>150</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>Block
 --
 -Cells[4]: Cell *
 --
 +clockwise()
++Blcok(char type, Grid *grid);
 +counterClockwise()
 +moveLeft()
 +moveRight()
