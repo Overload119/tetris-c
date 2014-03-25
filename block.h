@@ -11,7 +11,7 @@ public:
   void counterClockwise();
   void moveLeft();
   void moveRight();
-  void moveDown();
+  bool moveDown();
   void drop();
   Block(char type, Grid *grid);
 };

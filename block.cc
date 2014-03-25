@@ -70,7 +70,7 @@ void Block::moveDown(){
     for (int j = 0; j < 3; ++j){
       if (tempCell != cell[j]){
         if (tempCell->isActive()){
-            return;
+            return true;
         }
       }
     }
@@ -80,5 +80,7 @@ void Block::moveDown(){
     cell[i] = getCellAt(newX, newY);
     cell[i]->turnOn;
   }
-  return;
+  return false;
 }
+
+
