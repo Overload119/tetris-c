@@ -39,7 +39,7 @@ theCells[18][10]:Cells*
 --
 +getCellAt(int x, int y)
 +clear()
-+clearLines()
++checkAndClearRows()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -205,12 +205,12 @@ active:bool
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>90</x>
-      <y>10</y>
-      <w>130</w>
-      <h>90</h>
+      <x>150</x>
+      <y>140</y>
+      <w>70</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;110;70</additional_attributes>
+    <additional_attributes>50;30;30;30</additional_attributes>
   </element>
 </diagram>
