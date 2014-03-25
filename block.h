@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 class block{
-  cell *cells[4];
+  Cell *cells[4];
   Grid *grid;
 public:
   void clockwise();

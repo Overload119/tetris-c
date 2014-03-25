@@ -11,7 +11,8 @@
     </coordinates>
     <panel_attributes>Block
 --
--Cells[4]: Cell *
+-cells[4]: Cell *
+-grid: Grid *
 --
 +clockwise()
 +Block(char type, Grid *grid);
