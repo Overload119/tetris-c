@@ -35,7 +35,9 @@ int main(int argc, char* argv[]) {
   if (startLevel == 0) {
     level = new Level0(grid);
     level->setSeed( seed );
-    level->readFromFile( scriptFilePath );
+
+    // Level0 contains the readFromFile method
+    static_cast<Level0*>(level)->readFromFile( scriptFilePath );
   } else if (startLevel == 1) {
   } else if (startLevel == 2) {
   } else if (startLevel == 3) {
