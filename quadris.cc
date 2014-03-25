@@ -3,6 +3,21 @@
 #include "grid.h"
 #include "level0.h"
 
+using namespace std;
+
+// Helper function to read a command
+bool isLeft(const string &input) {
+  return (input == "left" || input == "lef");
+}
+
+bool isRight(const string &input) {
+  return (input == "ri" || input == "rig" || input == "righ" || input == "right");
+}
+
+bool isDown(const string &input) {
+  return (input == "do" || input == "dow" || input == "down");
+}
+
 int main(int argc, char* argv[]) {
   // Read and parse the commandline arguments
   // Defaults
@@ -58,35 +73,38 @@ int main(int argc, char* argv[]) {
     // Attempt to read in a multiplier
     // If there is none, this should be empty
     int multiplier;
-    iss >> multiplier;
-    bool hasMultiplier = (multiplier == NULL);
+    if (!(iss >> multiplier)) {
+      multiplier = 1;
+    }
 
-    // TODO: Use the multiplier method
-    // Read in a command
     string command;
     iss >> command;
 
-    if (command == "left") {
-      currentBlock->moveLeft();
-    } else if (command == "right") {
-      currentBlock->moveRight();
-    } else if (command == "down") {
-      currentBlock->moveDown();
-    }
+    for (int i = 0; i < multiplier; i++) {
 
-    if (currentBlock->isStopped()) {
-      delete currentBlock;
-      currentBlock = level->createBlock();
+      if (isLeft(command)) {
+        currentBlock->moveLeft();
+      } else if (isRight(command)) {
+        currentBlock->moveRight();
+      } else if (isDown(command)) {
+        currentBlock->moveDown();
+      }
 
-      int rowsCleared = grid.checkAndClearRows();
-      if (rowsCleared > 0) {
-        // When row is cleared, score points equal to current level plus number of cleared rows squared
-        int points = (rowsCleared + currentLevel) * (rowsCleared + currentLevel);
-        score += points;
-        if (score > highScore) {
-          highScore = score;
+      if (currentBlock->isStopped()) {
+        delete currentBlock;
+        currentBlock = level->createBlock();
+
+        int rowsCleared = grid.checkAndClearRows();
+        if (rowsCleared > 0) {
+          // When row is cleared, score points equal to current level plus number of cleared rows squared
+          int points = (rowsCleared + currentLevel) * (rowsCleared + currentLevel);
+          score += points;
+          if (score > highScore) {
+            highScore = score;
+          }
         }
       }
+
     }
 
   }
