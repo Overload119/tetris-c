@@ -17,3 +17,11 @@ void Cell::turnOff(){
 void Cell::turnOn(){
   active = true;
 }
+
+void Cell::isActive(){
+  if (active == true){
+    return true;
+  } else {
+    return false;
+  }
+}
