@@ -12,7 +12,6 @@ public:
   void moveLeft();
   void moveRight();
   void moveDown();
-  bool isStopped();
   void drop();
   Block(char type, Grid *grid);
 };

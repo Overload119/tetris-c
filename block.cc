@@ -59,5 +59,22 @@ void Block::moveLeft(){
 void Block::moveDown(){
   int newY[4];
   int newX[4];
-
+  Cell *tempCell;
+  for (int i = 0; i < 3; ++i){
+    newX[i] = cell[i]->getX();
+    newY[i] = cell[i]->getY() - 1;
+    tempCell = getCellAt(newX, newY);
+    for (int j = 0; j < 3; ++j){
+      if (tempCell != cell[j]){
+        if (tempCell->isActive()){
+            return;
+        }
+      }
+    }
+  }
+  for (int i = 0; i < 3; ++i){
+    cell[i]->turnOff();
+    cell[i] = getCellAt(newX, newY);
+    cell[i]->turnOn;
+  }
 }
