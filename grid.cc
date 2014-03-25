@@ -13,7 +13,7 @@ Cell* Grid::getCellAt(int x, int y) {
 void Grid::clear() {
   for (int i = 0; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
-      cells[i][j].turnOff();
+      cells[j][i].turnOff();
     }
   }
 }
@@ -26,7 +26,7 @@ int Grid::checkAndClearRows() {
     // Start off with assumption that the row is filled
     bool isRowFilled = true;
     for (int j = 0; j < COLUMNS; j++) {
-      if (!cells[i][j]->isActive()) {
+      if (!cells[j][i].isActive()) {
         // Discovered a cell that is not filled
         // so this row is not filled
         isRowFilled = false;
@@ -38,10 +38,33 @@ int Grid::checkAndClearRows() {
       rowsToClear++;
       // Go through each cell in this row and turn it off
       for (int j = 0; j < COLUMNS; j++) {
-        cells[i][j]->turnOff();
+        cells[j][i].turnOff();
       }
     }
   }
+
+  if (rowsToClear > 0) {
+    // If we removed rows then shift all cells down until the bottom row has at least 1 active cell
+    for (int k = 0; k < rowsToClear; k++) {
+      // Start from the bottom row, check the row above, and bring the values of the cells down
+      // Do this `rowsToClear` times
+      for (int i = ROWS - 1; i > 2; i--) {
+        for (int j = 0; j < COLUMNS; j++) {
+          if (i-1 == 2) {
+            // Don't look at the value directly above the first "visible" row
+            cells[j][i].turnOff();
+          } else {
+            if (cells[j][i - 1].isActive()) {
+              cells[j][i].turnOn();
+            } else {
+              cells[j][i].turnOff();
+            }
+          }
+        }
+      }
+    }
+  }
+
   return rowsToClear;
 }
 
@@ -49,8 +72,8 @@ ostream &operator<<(std::ostream &out, const Grid &g) {
   // The first 3 rows are reserved.
   for (int i = 2; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
-      char c = g.cells[i][j]->getChar();
-      if (cells[i][j]->isActive()) {
+      char c = g.cells[i][j].getChar();
+      if (cells[i][j].isActive()) {
         cout << c;
       } else {
         cout << " "; // A blank spot for spacing
