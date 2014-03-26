@@ -14,6 +14,7 @@ public:
     void setPosition(int x, int y);
     void turnOff();
     void turnOn();
+    void turnOn(char c);
     bool isActive();
 };
 

@@ -5,6 +5,7 @@
 class Block{
   Cell *cells[4];
   Grid *grid;
+  char type;
 public:
   void clockwise();
   void counterClockwise();

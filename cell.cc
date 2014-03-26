@@ -26,16 +26,18 @@ int Cell::getY() const {
 
 void Cell::turnOff(){
   active = false;
+  c = ' ';
 }
 
 void Cell::turnOn(){
   active = true;
 }
 
+void Cell::turnOn(char c) {
+  this->c = c;
+  active = true;
+}
+
 bool Cell::isActive(){
-  if (active == true){
-    return true;
-  } else {
-    return false;
-  }
+  return active;
 }

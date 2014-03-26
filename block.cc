@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Block::Block(char type, Grid *grid):grid(grid){
+Block::Block(char type, Grid *grid):grid(grid), type(type) {
   cout << "creating block of type: " << type << endl;
   if (type == 'I'){
     cells[0] = grid->getCellAt(0,3);
@@ -17,8 +17,8 @@ Block::Block(char type, Grid *grid):grid(grid){
     cells[3] = grid->getCellAt(2,3);
   } else if (type == 'O'){
     cells[0] = grid->getCellAt(0,3);
-    cells[1] = grid->getCellAt(1,3);
     cells[2] = grid->getCellAt(0,4);
+    cells[1] = grid->getCellAt(1,3);
     cells[3] = grid->getCellAt(1,4);
   } else if (type == 'S'){
     cells[0] = grid->getCellAt(0,4);
@@ -30,6 +30,10 @@ Block::Block(char type, Grid *grid):grid(grid){
     cells[1] = grid->getCellAt(1,3);
     cells[2] = grid->getCellAt(1,4);
     cells[3] = grid->getCellAt(2,4);
+  }
+
+  for (int i = 0; i < 4; i++) {
+    cells[i]->turnOn( type );
   }
 }
 
@@ -59,29 +63,40 @@ void Block::moveLeft(){
   }
 }
 
-bool Block::moveDown(){
-  int newY[4];
+bool Block::moveDown() {
   int newX[4];
+  int newY[4];
   Cell *tempCell;
   for (int i = 0; i < 4; ++i) { //checks if cell below is already true
     newX[i] = cells[i]->getX();
     newY[i] = cells[i]->getY() + 1;
     tempCell = grid->getCellAt(newX[i], newY[i]);
-    for (int j = 0; j < 4; ++j) {
-      if (tempCell != cells[j]) {
-        if (tempCell->isActive()) {
-            return true; // Means there is a block below this one and it cannot move down
-        }
+
+    bool cellBelowIsActive = tempCell->isActive();
+    bool cellBelowIsInSelf = false;
+    for (int j = 0; j < 4; j++) {
+      if (tempCell == cells[j]) {
+        cellBelowIsInSelf = true;
       }
     }
+
+    if (cellBelowIsActive && !cellBelowIsInSelf) {
+      return true;
+    }
   }
-  //if it makes it through above loop, sets cell to new (x,y);
-  for (int i = 0; i < 4; ++i){
+
+  // Turn of the cells for the block since
+  // the cells are about to be updated
+  for (int i = 0; i < 4; i++) {
     cells[i]->turnOff();
-    cells[i] = grid->getCellAt(newX[i], newY[i]);
-    cout << "turn on a cell" << endl;
-    cells[i]->turnOn();
   }
+
+  // Update and turn on all the new cell positions
+  for (int i = 0; i < 4; ++i) {
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn(type);
+  }
+
   return false;
 }
 

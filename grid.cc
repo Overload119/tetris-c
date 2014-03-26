@@ -81,12 +81,12 @@ int Grid::checkAndClearRows() {
 ostream& operator<<(ostream &out, const Grid &g) {
   // Print the top border
   for (int i = 0; i < COLUMNS; i++) {
-    cout << "_";
+    cout << "-";
   }
   cout << endl;
 
   // The first 3 rows are reserved.
-  for (int i = 2; i < ROWS; i++) {
+  for (int i = 3; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
       char c = g.cells[j][i].getChar();
       if (g.cells[j][i].isActive()) {
@@ -100,7 +100,7 @@ ostream& operator<<(ostream &out, const Grid &g) {
 
   // Print the bottom border
   for (int i = 0; i < COLUMNS; i++) {
-    cout << "_";
+    cout << "-";
   }
   cout << endl;
   return out;
