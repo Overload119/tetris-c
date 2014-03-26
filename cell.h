@@ -6,10 +6,12 @@ class Cell {
   bool active;
   char c;
 public:
-    Cell(int x, int y);
+    Cell();
     void draw(); //only needed for graphical interface, not text display
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
+    char getChar() const;
+    void setPosition(int x, int y);
     void turnOff();
     void turnOn();
     bool isActive();

@@ -1,13 +1,27 @@
 #include "cell.h"
 
-Cell::Cell(int x, int y): x(x), y(y), active(false){}
-
-int Cell::getX(Cell *current){
-    return x;
+Cell::Cell() {
+  x = -1;
+  y = -1;
+  active = false;
+  c = ' ';
 }
 
-int Cell::getY(Cell *current){
-    return y;
+void Cell::setPosition(int x, int y) {
+  this->x = x;
+  this->y = y;
+}
+
+char Cell::getChar() const {
+  return c;
+}
+
+int Cell::getX() const {
+  return x;
+}
+
+int Cell::getY() const {
+  return y;
 }
 
 void Cell::turnOff(){
@@ -18,7 +32,7 @@ void Cell::turnOn(){
   active = true;
 }
 
-void Cell::isActive(){
+bool Cell::isActive(){
   if (active == true){
     return true;
   } else {

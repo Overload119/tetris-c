@@ -1,5 +1,7 @@
 #include "level0.h"
 
+using namespace std;
+
 Level0::Level0(Grid* grid) {
   setGrid(grid);
 }

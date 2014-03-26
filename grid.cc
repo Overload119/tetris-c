@@ -3,11 +3,17 @@
 using namespace std;
 
 Grid::Grid() {
-  // Cells should already be initialized at this point.
+  cells = new Cell*[COLUMNS];
+  for (int i = 0; i < COLUMNS; i++) {
+    cells[i] = new Cell[ROWS];
+    for (int j = 0; j < ROWS; j++) {
+      cells[i][j].setPosition(i, j);
+    }
+  }
 }
 
 Cell* Grid::getCellAt(int x, int y) {
-  return cells[x][y];
+  return &cells[x][y];
 }
 
 void Grid::clear() {
@@ -68,12 +74,12 @@ int Grid::checkAndClearRows() {
   return rowsToClear;
 }
 
-ostream &operator<<(std::ostream &out, const Grid &g) {
+ostream &operator<<(ostream &out, const Grid &g) {
   // The first 3 rows are reserved.
   for (int i = 2; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
       char c = g.cells[i][j].getChar();
-      if (cells[i][j].isActive()) {
+      if (g.cells[i][j].isActive()) {
         cout << c;
       } else {
         cout << " "; // A blank spot for spacing

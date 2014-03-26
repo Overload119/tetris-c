@@ -37,11 +37,11 @@ void Block::moveRight(){
   int newX[4];
   int newY[4];
   for (int i = 0; i < 3; ++i){
-    cell[i]->turnOff();
-    newX[i] = cell[i]->getX() + 1;
-    newY[i] = cell[i]->getY();
-    cell[i] = grid->getCellAt(newX, newY);
-    cell[i]->turnOn();
+    cells[i]->turnOff();
+    newX[i] = cells[i]->getX() + 1;
+    newY[i] = cells[i]->getY();
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn();
   }
 }
 
@@ -50,11 +50,11 @@ void Block::moveLeft(){
   int newX[4];
   int newY[4];
   for (int i = 0; i < 3; ++i){
-    cell[i]->turnOff();
-    newX[i] = cell[i]->getX() - 1;
-    newY[i] = cell[i]->getY();
-    cell[i] = grid->getCellAt(newX, newY);
-    cell[i]->turnOn();
+    cells[i]->turnOff();
+    newX[i] = cells[i]->getX() - 1;
+    newY[i] = cells[i]->getY();
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn();
   }
 }
 
@@ -64,11 +64,11 @@ bool Block::moveDown(){
   int newX[4];
   Cell *tempCell;
   for (int i = 0; i < 3; ++i){ //checks if cell below is already true
-    newX[i] = cell[i]->getX();
-    newY[i] = cell[i]->getY() - 1;
-    tempCell = grid->getCellAt(newX, newY);
+    newX[i] = cells[i]->getX();
+    newY[i] = cells[i]->getY() - 1;
+    tempCell = grid->getCellAt(newX[i], newY[i]);
     for (int j = 0; j < 3; ++j){
-      if (tempCell != cell[j]){
+      if (tempCell != cells[j]){
         if (tempCell->isActive()){
             return true;
         }
@@ -77,9 +77,9 @@ bool Block::moveDown(){
   }
   //if it makes it through above loop, sets cell to new (x,y);
   for (int i = 0; i < 3; ++i){
-    cell[i]->turnOff();
-    cell[i] = grid->getCellAt(newX, newY);
-    cell[i]->turnOn;
+    cells[i]->turnOff();
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn();
   }
   return false;
 }

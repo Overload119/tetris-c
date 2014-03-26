@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "grid.h"
 #include "level0.h"
 
@@ -27,8 +28,8 @@ int main(int argc, char* argv[]) {
   // Defaults
   bool textOnly         = true; // Set this to false by default
   int seed              = 1337;
-  string scriptFilePath = "sequence.txt"
-  int startLevel        = 0
+  string scriptFilePath = "sequence.txt";
+  int startLevel        = 0;
 
   for (int i = 0; i < argc; i++) {
     string arg( argv[i] );
@@ -37,29 +38,30 @@ int main(int argc, char* argv[]) {
     if (arg == "-text") {
       textOnly = true;
     } else if (arg == "-seed") {
-      seed = NULL;
       argss >> seed;
     } else if (arg == "-scriptfile") {
       scriptFilePath = "";
       argss >> scriptFilePath;
     } else if (arg == "-startlevel") {
-      startLevel = NULL;
       argss >> startLevel;
     }
   }
 
   // Setup the game based on the defaults or commandline arguments
   Grid grid;
-  Level* level;
+  Level* level = NULL;
   if (startLevel == 0) {
-    level = new Level0(grid);
+    level = new Level0(&grid);
     level->setSeed( seed );
 
     // Level0 contains the readFromFile method
     static_cast<Level0*>(level)->readFromFile( scriptFilePath );
   } else if (startLevel == 1) {
+    level = new Level0(&grid);
   } else if (startLevel == 2) {
+    level = new Level0(&grid);
   } else if (startLevel == 3) {
+    level = new Level0(&grid);
   }
 
   Block* currentBlock = level->createBlock();
@@ -116,5 +118,4 @@ int main(int argc, char* argv[]) {
 
   delete level;
   delete currentBlock;
-  delete grid;
 }

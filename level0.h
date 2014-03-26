@@ -6,12 +6,12 @@
 #include "level.h"
 
 class Level0 : public Level {
-  istream *input;
+  std::istream *input;
   public:
     Level0(Grid* grid);
     ~Level0();
     void setSeed(int n);
-    void readFromFile(string path);
+    void readFromFile(std::string path);
     Block* createBlock();
 };
 
