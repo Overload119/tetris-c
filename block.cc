@@ -4,6 +4,7 @@
 using namespace std;
 
 Block::Block(char type, Grid *grid):grid(grid){
+  cout << "creating block of type: " << type << endl;
   if (type == 'I'){
     cells[0] = grid->getCellAt(0,3);
     cells[1] = grid->getCellAt(1,3);
@@ -36,7 +37,7 @@ Block::Block(char type, Grid *grid):grid(grid){
 void Block::moveRight(){
   int newX[4];
   int newY[4];
-  for (int i = 0; i < 3; ++i){
+  for (int i = 0; i < 4; ++i){
     cells[i]->turnOff();
     newX[i] = cells[i]->getX() + 1;
     newY[i] = cells[i]->getY();
@@ -49,7 +50,7 @@ void Block::moveRight(){
 void Block::moveLeft(){
   int newX[4];
   int newY[4];
-  for (int i = 0; i < 3; ++i){
+  for (int i = 0; i < 4; ++i){
     cells[i]->turnOff();
     newX[i] = cells[i]->getX() - 1;
     newY[i] = cells[i]->getY();
@@ -63,11 +64,11 @@ bool Block::moveDown(){
   int newY[4];
   int newX[4];
   Cell *tempCell;
-  for (int i = 0; i < 3; ++i){ //checks if cell below is already true
+  for (int i = 0; i < 4; ++i){ //checks if cell below is already true
     newX[i] = cells[i]->getX();
-    newY[i] = cells[i]->getY() - 1;
+    newY[i] = cells[i]->getY() + 1;
     tempCell = grid->getCellAt(newX[i], newY[i]);
-    for (int j = 0; j < 3; ++j){
+    for (int j = 0; j < 4; ++j){
       if (tempCell != cells[j]){
         if (tempCell->isActive()){
             return true;
@@ -76,9 +77,10 @@ bool Block::moveDown(){
     }
   }
   //if it makes it through above loop, sets cell to new (x,y);
-  for (int i = 0; i < 3; ++i){
+  for (int i = 0; i < 4; ++i){
     cells[i]->turnOff();
     cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cout << "turn on a cell" << endl;
     cells[i]->turnOn();
   }
   return false;

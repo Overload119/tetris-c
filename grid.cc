@@ -79,11 +79,17 @@ int Grid::checkAndClearRows() {
 }
 
 ostream& operator<<(ostream &out, const Grid &g) {
+  // Print the top border
+  for (int i = 0; i < COLUMNS; i++) {
+    cout << "_";
+  }
+  cout << endl;
+
   // The first 3 rows are reserved.
   for (int i = 2; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
-      char c = g.cells[i][j].getChar();
-      if (g.cells[i][j].isActive()) {
+      char c = g.cells[j][i].getChar();
+      if (g.cells[j][i].isActive()) {
         cout << c;
       } else {
         cout << " "; // A blank spot for spacing
@@ -91,5 +97,11 @@ ostream& operator<<(ostream &out, const Grid &g) {
     }
     cout << endl;
   }
+
+  // Print the bottom border
+  for (int i = 0; i < COLUMNS; i++) {
+    cout << "_";
+  }
+  cout << endl;
   return out;
 }

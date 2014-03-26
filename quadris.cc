@@ -72,9 +72,10 @@ int main(int argc, char* argv[]) {
   string s;
 
   while(1) {
-
-    // Runs the game
-    cout << grid << endl;
+    cout << "Level:    " << currentLevel << endl;
+    cout << "Score:    " << score << endl;
+    cout << "Hi Score: " << highScore << endl;
+    cout << grid;
 
     getline(cin,s);
     if (cin.fail()) break;
@@ -82,13 +83,16 @@ int main(int argc, char* argv[]) {
 
     // Attempt to read in a multiplier
     // If there is none, this should be empty
-    int multiplier;
-    if (!(iss >> multiplier)) {
-      multiplier = 1;
-    }
+    int multiplier = 1;
+    // if (!(iss >> multiplier)) {
+    //   multiplier = 1;
+    // }
 
     string command;
     iss >> command;
+
+    cout << "Multiplier: " << multiplier << endl;
+    cout << "Reading command: " << command << endl;
 
     for (int i = 0; i < multiplier; i++) {
 
