@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Grid::~Grid() {
+  // TODO
+}
+
 Grid::Grid() {
   cells = new Cell*[COLUMNS];
   for (int i = 0; i < COLUMNS; i++) {
@@ -74,7 +78,7 @@ int Grid::checkAndClearRows() {
   return rowsToClear;
 }
 
-ostream &operator<<(ostream &out, const Grid &g) {
+ostream& operator<<(ostream &out, const Grid &g) {
   // The first 3 rows are reserved.
   for (int i = 2; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {

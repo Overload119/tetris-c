@@ -13,7 +13,7 @@ Level0::~Level0() {
 Block* Level0::createBlock() {
   // Read the next kind of block to produce
   char blockType;
-  input >> blockType;
+  input->get( blockType );
 
   Block *b = new Block(blockType, grid);
   return b;

@@ -72,6 +72,10 @@ int main(int argc, char* argv[]) {
   string s;
 
   while(1) {
+
+    // Runs the game
+    cout << grid << endl;
+
     getline(cin,s);
     if (cin.fail()) break;
     istringstream iss(s);

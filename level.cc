@@ -1,5 +1,7 @@
 #include "level.h"
 
+Level::~Level() { }
+
 void Level::setGrid(Grid* g) {
   grid = g;
 }

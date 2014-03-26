@@ -8,10 +8,11 @@ class Grid {
   Cell** cells;
   public:
     Grid();
+    ~Grid();
     void clear();
     int checkAndClearRows();
     Cell* getCellAt(int x, int y);
-    friend std::ostream &operator << (std::ostream &out, const Grid &v);
+    friend std::ostream& operator << (std::ostream &out, const Grid &v);
 };
 
 #endif
