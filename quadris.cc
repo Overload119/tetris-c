@@ -84,9 +84,9 @@ int main(int argc, char* argv[]) {
     // Attempt to read in a multiplier
     // If there is none, this should be empty
     int multiplier = 1;
-    // if (!(iss >> multiplier)) {
-    //   multiplier = 1;
-    // }
+    if (iss.peek() >= 48 || iss.peek() <= 57) {
+      iss >> multiplier;
+    }
 
     string command;
     iss >> command;

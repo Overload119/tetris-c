@@ -59,19 +59,18 @@ void Block::moveLeft(){
   }
 }
 
-//turns off current cells and points new cells with y -= 1
 bool Block::moveDown(){
   int newY[4];
   int newX[4];
   Cell *tempCell;
-  for (int i = 0; i < 4; ++i){ //checks if cell below is already true
+  for (int i = 0; i < 4; ++i) { //checks if cell below is already true
     newX[i] = cells[i]->getX();
     newY[i] = cells[i]->getY() + 1;
     tempCell = grid->getCellAt(newX[i], newY[i]);
-    for (int j = 0; j < 4; ++j){
-      if (tempCell != cells[j]){
-        if (tempCell->isActive()){
-            return true;
+    for (int j = 0; j < 4; ++j) {
+      if (tempCell != cells[j]) {
+        if (tempCell->isActive()) {
+            return true; // Means there is a block below this one and it cannot move down
         }
       }
     }
