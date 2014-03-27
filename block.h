@@ -9,10 +9,11 @@ class Block{
 public:
   void clockwise();
   void counterClockwise();
-  void moveLeft();
-  void moveRight();
+  bool moveLeft();
+  bool moveRight();
   bool moveDown();
   void drop();
+  bool update(int x, int y);
   Block(char type, Grid *grid);
 };
 

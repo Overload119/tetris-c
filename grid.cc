@@ -17,7 +17,13 @@ Grid::Grid() {
 }
 
 Cell* Grid::getCellAt(int x, int y) {
-  return &cells[x][y];
+  if ((x < 0) || (x > 9)) {
+    return NULL;
+  } else if ((y < 0) || (y > 17)) {
+    return NULL;
+  } else {
+    return &cells[x][y];
+  }
 }
 
 void Grid::clear() {

@@ -37,40 +37,9 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
   }
 }
 
-// turns off new cell and points current cell to cell with x += 1
-void Block::moveRight(){
-  int newX[4];
-  int newY[4];
-  for (int i = 0; i < 4; ++i){
-    cells[i]->turnOff();
-    newX[i] = cells[i]->getX() + 1;
-    newY[i] = cells[i]->getY();
-    cells[i] = grid->getCellAt(newX[i], newY[i]);
-    cells[i]->turnOn();
-  }
-}
-
-// turns off new cell and points current cell to cell with x -= 1
-void Block::moveLeft(){
-  int newX[4];
-  int newY[4];
-  for (int i = 0; i < 4; ++i){
-    cells[i]->turnOff();
-    newX[i] = cells[i]->getX() - 1;
-    newY[i] = cells[i]->getY();
-    cells[i] = grid->getCellAt(newX[i], newY[i]);
-    cells[i]->turnOn();
-  }
-}
-
-bool Block::moveDown() {
-  int newX[4];
-  int newY[4];
-  Cell *tempCell;
-  for (int i = 0; i < 4; ++i) { //checks if cell below is already true
-    newX[i] = cells[i]->getX();
-    newY[i] = cells[i]->getY() + 1;
-    tempCell = grid->getCellAt(newX[i], newY[i]);
+bool Block::update(int x, int y){
+ //checks if cell below is already true
+    Cell *tempCell = grid->getCellAt(x, y);
 
     bool cellBelowIsActive = tempCell->isActive();
     bool cellBelowIsInSelf = false;
@@ -82,6 +51,23 @@ bool Block::moveDown() {
 
     if (cellBelowIsActive && !cellBelowIsInSelf) {
       return true;
+    }
+
+  return false;
+}
+
+// turns off new cell and points current cell to cell with x += 1
+bool Block::moveRight(){
+   int newX[4];
+  int newY[4];
+  bool answer;
+
+  for (int i = 0; i < 4; ++i) {
+    newX[i] = cells[i]->getX() + 1;
+    newY[i] = cells[i]->getY();
+    answer = update(newX[i], newY[i]);
+    if (answer){
+      return answer;
     }
   }
 
@@ -96,7 +82,64 @@ bool Block::moveDown() {
     cells[i] = grid->getCellAt(newX[i], newY[i]);
     cells[i]->turnOn(type);
   }
+  return false;
+}
 
+// turns off new cell and points current cell to cell with x -= 1
+bool Block::moveLeft(){
+  int newX[4];
+  int newY[4];
+  bool answer;
+
+  for (int i = 0; i < 4; ++i) {
+
+    newX[i] = cells[i]->getX() - 1;
+    newY[i] = cells[i]->getY();
+    answer = update(newX[i], newY[i]);
+    if (answer){
+      return answer;
+    }
+  }
+
+  // Turn of the cells for the block since
+  // the cells are about to be updated
+  for (int i = 0; i < 4; i++) {
+    cells[i]->turnOff();
+  }
+
+  // Update and turn on all the new cell positions
+  for (int i = 0; i < 4; ++i) {
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn(type);
+  }
+  return false;
+}
+
+bool Block::moveDown() {
+  int newX[4];
+  int newY[4];
+  bool answer;
+
+  for (int i = 0; i < 4; ++i) {
+    newX[i] = cells[i]->getX();
+    newY[i] = cells[i]->getY() + 1;
+    answer = update(newX[i], newY[i]);
+    if (answer){
+      return answer;
+    }
+  }
+
+  // Turn of the cells for the block since
+  // the cells are about to be updated
+  for (int i = 0; i < 4; i++) {
+    cells[i]->turnOff();
+  }
+
+  // Update and turn on all the new cell positions
+  for (int i = 0; i < 4; ++i) {
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn(type);
+  }
   return false;
 }
 
