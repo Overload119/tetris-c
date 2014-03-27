@@ -37,38 +37,38 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
   }
 }
 
-bool Block::update(int x, int y){
- //checks if cell below is already true
-    Cell *tempCell = grid->getCellAt(x, y);
-    if (tempCell == NULL){
-      return true;
-    }
+bool Block::isCellValid(int x, int y){
+  //checks if cell below is already true
+  Cell *tempCell = grid->getCellAt(x, y);
+  if (tempCell == NULL) {
+    return true;
+  }
 
-    bool cellBelowIsActive = tempCell->isActive();
-    bool cellBelowIsInSelf = false;
-    for (int j = 0; j < 4; j++) {
-      if (tempCell == cells[j]) {
-        cellBelowIsInSelf = true;
-      }
+  bool cellIsActive = tempCell->isActive();
+  bool cellIsInSelf = false;
+  for (int j = 0; j < 4; j++) {
+    if (tempCell == cells[j]) {
+      cellIsInSelf = true;
     }
+  }
 
-    if (cellBelowIsActive && !cellBelowIsInSelf) {
-      return true;
-    }
+  if (cellIsActive && !cellIsInSelf) {
+    return true;
+  }
 
   return false;
 }
 
 // turns off new cell and points current cell to cell with x += 1
 bool Block::moveRight(){
-   int newX[4];
+  int newX[4];
   int newY[4];
   bool answer;
 
   for (int i = 0; i < 4; ++i) {
     newX[i] = cells[i]->getX() + 1;
     newY[i] = cells[i]->getY();
-    answer = update(newX[i], newY[i]);
+    answer = isCellValid(newX[i], newY[i]);
     if (answer){
       return answer;
     }
@@ -98,7 +98,7 @@ bool Block::moveLeft(){
 
     newX[i] = cells[i]->getX() - 1;
     newY[i] = cells[i]->getY();
-    answer = update(newX[i], newY[i]);
+    answer = isCellValid(newX[i], newY[i]);
     if (answer){
       return answer;
     }
@@ -126,7 +126,7 @@ bool Block::moveDown() {
   for (int i = 0; i < 4; ++i) {
     newX[i] = cells[i]->getX();
     newY[i] = cells[i]->getY() + 1;
-    answer = update(newX[i], newY[i]);
+    answer = isCellValid(newX[i], newY[i]);
     if (answer){
       return answer;
     }
