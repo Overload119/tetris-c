@@ -40,6 +40,9 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
 bool Block::update(int x, int y){
  //checks if cell below is already true
     Cell *tempCell = grid->getCellAt(x, y);
+    if (tempCell == NULL){
+      return true;
+    }
 
     bool cellBelowIsActive = tempCell->isActive();
     bool cellBelowIsInSelf = false;
