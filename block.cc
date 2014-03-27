@@ -30,6 +30,16 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
     cells[1] = grid->getCellAt(1,3);
     cells[2] = grid->getCellAt(1,4);
     cells[3] = grid->getCellAt(2,4);
+  } else if (type == 'T') {
+    cells[0] = grid->getCellAt(0,3);
+    cells[1] = grid->getCellAt(1,3);
+    cells[2] = grid->getCellAt(1,4);
+    cells[3] = grid->getCellAt(2,4);
+  } else if (type == 'J') {
+    cells[0] = grid->getCellAt(0,3);
+    cells[1] = grid->getCellAt(1,3);
+    cells[2] = grid->getCellAt(1,4);
+    cells[3] = grid->getCellAt(2,4);
   }
 
   for (int i = 0; i < 4; i++) {

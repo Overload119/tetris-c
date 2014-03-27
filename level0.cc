@@ -12,8 +12,15 @@ Level0::~Level0() {
 
 Block* Level0::createBlock() {
   // Read the next kind of block to produce
-  char blockType;
-  input->get( blockType );
+  char blockType = ' ';
+  while (isspace(blockType)) {
+    if (input->eof()) {
+      cout << "WARNING: Level0 file has been exhausted. All subsequent blocks will be of type I." << endl;
+      blockType = 'I';
+      break;
+    }
+    input->get( blockType);
+  }
 
   Block *b = new Block(blockType, grid);
   return b;

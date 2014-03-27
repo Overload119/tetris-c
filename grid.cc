@@ -59,6 +59,8 @@ int Grid::checkAndClearRows() {
     }
   }
 
+  cout << "rowsToClear: " << rowsToClear << endl;
+
   if (rowsToClear > 0) {
     // If we removed rows then shift all cells down until the bottom row has at least 1 active cell
     for (int k = 0; k < rowsToClear; k++) {
