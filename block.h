@@ -13,7 +13,7 @@ public:
   bool moveRight();
   bool moveDown();
   void drop();
-  bool update(int x, int y);
+  bool isCellValid(int x, int y);
   Block(char type, Grid *grid);
 };
 
