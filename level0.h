@@ -10,7 +10,6 @@ class Level0 : public Level {
   public:
     Level0(Grid* grid);
     ~Level0();
-    void setSeed(int n);
     void readFromFile(std::string path);
     Block* createBlock();
 };

@@ -2,12 +2,12 @@
 
 Level::~Level() { }
 
-void Level::setGrid(Grid* g) {
+Level::Level(Grid* g) {
   grid = g;
 }
 
 int Level::getRandomNumber(int max) {
-  return rand() % 100; // 0 to 99
+  return rand() % max; // 0 to max
 }
 
 void Level::setSeed(int n) {

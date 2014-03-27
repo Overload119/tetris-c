@@ -3,7 +3,7 @@
 #include <iostream>
 #include "cell.h"
 
-enum { ROWS = 18, COLUMNS = 15 };
+enum { ROWS = 18, COLUMNS = 10 };
 class Grid {
   Cell** cells;
   public:

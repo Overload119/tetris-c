@@ -3,6 +3,7 @@
 #include <sstream>
 #include "grid.h"
 #include "level0.h"
+#include "level1.h"
 
 using namespace std;
 
@@ -43,7 +44,13 @@ int main(int argc, char* argv[]) {
       scriptFilePath = "";
       argss >> scriptFilePath;
     } else if (arg == "-startlevel") {
+      // The argument after startLevel should be an integer
+      i++;
+      string arg( argv[i] );
+      istringstream argss(arg);
       argss >> startLevel;
+      // cout << argv[i] << endl;
+      // cout << "opt:startLevel " << startLevel << endl;
     }
   }
 
@@ -53,11 +60,11 @@ int main(int argc, char* argv[]) {
   if (startLevel == 0) {
     level = new Level0(&grid);
     level->setSeed( seed );
-
     // Level0 contains the readFromFile method
     static_cast<Level0*>(level)->readFromFile( scriptFilePath );
   } else if (startLevel == 1) {
-    level = new Level0(&grid);
+    level = new Level1(&grid);
+    level->setSeed( seed );
   } else if (startLevel == 2) {
     level = new Level0(&grid);
   } else if (startLevel == 3) {

@@ -5,12 +5,12 @@
 #include "grid.h"
 
 class Level {
-  int getRandomNumber(int max);
   protected:
     Grid* grid;
+    int getRandomNumber(int max);
   public:
     void setSeed(int n);
-    void setGrid(Grid* grid);
+    Level(Grid* grid);
     virtual ~Level();
     virtual Block* createBlock() = 0;
 };

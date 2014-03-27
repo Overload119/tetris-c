@@ -2,8 +2,7 @@
 
 using namespace std;
 
-Level0::Level0(Grid* grid) {
-  setGrid(grid);
+Level0::Level0(Grid* grid):Level(grid) {
 }
 
 Level0::~Level0() {
