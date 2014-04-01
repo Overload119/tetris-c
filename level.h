@@ -11,7 +11,7 @@ class Level {
   public:
     void setSeed(int n);
     Level(Grid* grid);
-    virtual ~Level();
+    virtual ~Level() = 0;
     virtual Block* createBlock() = 0;
 };
 
