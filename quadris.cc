@@ -4,6 +4,8 @@
 #include "grid.h"
 #include "level0.h"
 #include "level1.h"
+#include "level2.h"
+#include "level3.h"
 
 using namespace std;
 
@@ -22,6 +24,30 @@ bool isDown(const string &input) {
 
 bool isDrop(const string &input) {
   return (input == "dr" || input == "dro" || input == "drop");
+}
+
+bool isRestart(const string &input) {
+  return (input == "re" || input == "res" || input == "rest" || input == "resta" || input == "restar" || input == "restart");
+}
+
+bool isLevelUp(const string &input) {
+  return (input == "levelu" || input == "levelup");
+}
+
+bool isLevelDown(const string &input) {
+  return (input == "leveld" || input == "leveldo" || input == "leveldow" || input == "leveldown");
+}
+
+bool isClockwise(const string &input) {
+  return (input == "cl" || input == "clo" || input == "cloc" || input == "clock" || input == "clockw" || input == "clockwi" || input == "clockwis" || input == "clockwise");
+}
+
+bool isCounterClockwise(const string &input) {
+  return (input == "co" || input == "cou" || input == "coun" || input == "count" || input == "counte" || input == "counter" || input == "counterc" || input == "countercl" || input == "counterclo" || input == "countercloc" || input == "counterclock" || input == "counterclockw" || input == "counterclockwi" || input == "counterclockwis" || input == "counterclockwise");
+}
+
+bool counterclockwise(const string &input) {
+  return (input == "leveld" || input == "leveldo" || input == "leveldow" || input == "leveldown");
 }
 
 int main(int argc, char* argv[]) {
@@ -59,17 +85,16 @@ int main(int argc, char* argv[]) {
   Level* level = NULL;
   if (startLevel == 0) {
     level = new Level0(&grid);
-    level->setSeed( seed );
     // Level0 contains the readFromFile method
     static_cast<Level0*>(level)->readFromFile( scriptFilePath );
   } else if (startLevel == 1) {
     level = new Level1(&grid);
-    level->setSeed( seed );
   } else if (startLevel == 2) {
-    level = new Level0(&grid);
+    level = new Level2(&grid);
   } else if (startLevel == 3) {
-    level = new Level0(&grid);
+    level = new Level3(&grid);
   }
+  level->setSeed( seed );
 
   Block* currentBlock = level->createBlock();
   int score = 0;
@@ -109,6 +134,38 @@ int main(int argc, char* argv[]) {
         currentBlock->moveRight();
       } else if (isDown(command)) {
         currentBlock->moveDown();
+      } else if (isClockwise(command)) {
+        currentBlock->clockwise();
+      } else if (isCounterClockwise(command)) {
+        currentBlock->counterClockwise();
+      } else if (isLevelUp(command)) {
+        // Only allow a level up if we are not at the maximum level
+        if (currentLevel < 3) {
+          currentLevel++;
+          delete level;
+          if (currentLevel == 1) {
+            level = new Level1(&grid);
+          } else if (currentLevel == 2) {
+            level = new Level2(&grid);
+          } else if (currentLevel == 3) {
+            level = new Level3(&grid);
+          }
+          level->setSeed( seed );
+        }
+      } else if (isLevelDown(command)) {
+        // Only allow a leveldown if we are at least level 1
+        if (currentLevel > 0) {
+          currentLevel--;
+          delete level;
+          if (currentLevel == 0) {
+            level = new Level0(&grid);
+          } else if (currentLevel == 1) {
+            level = new Level1(&grid);
+          } else if (currentLevel == 2) {
+            level = new Level2(&grid);
+          }
+          level->setSeed( seed );
+        }
       } else if (isDrop(command)) {
         currentBlock->drop();
 
