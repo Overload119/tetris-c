@@ -1,5 +1,8 @@
 #include "block.h"
 #include <stdbool.h>
+#include <cmath>
+
+#include <iostream>
 
 using namespace std;
 
@@ -165,5 +168,26 @@ void Block::drop(){
     }
   }
 }
+
+void Block::counterClockwise(){
+  int newX[4];
+  int newY[4];
+
+  cout << sin(50) << endl;
+
+  // Turn of the cells for the block since
+  // the cells are about to be updated
+  for (int i = 0; i < 4; i++) {
+    cells[i]->turnOff();
+  }
+
+  // Update and turn on all the new cell positions
+  for (int i = 0; i < 4; ++i) {
+    cells[i] = grid->getCellAt(newX[i], newY[i]);
+    cells[i]->turnOn(type);
+  }
+  return false;
+}
+
 
 
