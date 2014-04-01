@@ -46,10 +46,6 @@ bool isCounterClockwise(const string &input) {
   return (input == "co" || input == "cou" || input == "coun" || input == "count" || input == "counte" || input == "counter" || input == "counterc" || input == "countercl" || input == "counterclo" || input == "countercloc" || input == "counterclock" || input == "counterclockw" || input == "counterclockwi" || input == "counterclockwis" || input == "counterclockwise");
 }
 
-bool counterclockwise(const string &input) {
-  return (input == "leveld" || input == "leveldo" || input == "leveldow" || input == "leveldown");
-}
-
 int main(int argc, char* argv[]) {
   // Read and parse the commandline arguments
   // Defaults
@@ -182,6 +178,18 @@ int main(int argc, char* argv[]) {
           if (score > highScore) {
             highScore = score;
           }
+        }
+      } else if (isRestart(command)) {
+        // Clear all blocks from the grid
+        grid.clear();
+        // Resets the score and reinitializes the level
+        score = 0;
+        // We should re-read the sequence file
+        if (currentLevel == 0) {
+          delete level;
+          level = new Level0(&grid);
+          // Level0 contains the readFromFile method
+          static_cast<Level0*>(level)->readFromFile( scriptFilePath );
         }
       }
     }
