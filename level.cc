@@ -10,6 +10,10 @@ int Level::getRandomNumber(int max) {
   return rand() % max; // 0 to max
 }
 
+char Level::getNextBlockType() {
+  return nextBlockType;
+}
+
 void Level::setSeed(int n) {
   srand(n);
 }

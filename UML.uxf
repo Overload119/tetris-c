@@ -131,7 +131,7 @@ getRandomNumber(int max): int
     <panel_attributes>Level1
 --
 +createBlock()
-+nextBlockType()</panel_attributes>
++getNextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -156,7 +156,7 @@ getRandomNumber(int max): int
     <panel_attributes>Level2
 --
 +createBlock()
-+nextBlockType()</panel_attributes>
++getNextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -181,7 +181,7 @@ getRandomNumber(int max): int
     <panel_attributes>Level3
 --
 +createBlock()
-+nextBlockType()</panel_attributes>
++getNextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -219,7 +219,7 @@ getRandomNumber(int max): int
 std::istream *input
 --
 +createBlock()
-+nextBlockType()
++getNextBlockType()
 +readFromFile(std::string path)</panel_attributes>
     <additional_attributes/>
   </element>

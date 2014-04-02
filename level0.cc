@@ -8,7 +8,7 @@ Level0::~Level0() {
   delete input;
 }
 
-Block* Level0::createBlock() {
+void Level0::generateBlock() {
   // Read the next kind of block to produce
   char blockType = ' ';
   while (isspace(blockType)) {
@@ -17,13 +17,20 @@ Block* Level0::createBlock() {
       blockType = 'I';
       break;
     }
-    input->get( blockType);
+    input->get( blockType );
   }
 
-  Block *b = new Block(blockType, grid);
+  nextBlockType = blockType;
+}
+
+Block* Level0::createBlock() {
+  Block *b = new Block(nextBlockType, grid);
+  generateBlock();
   return b;
 }
 
 void Level0::readFromFile(string path) {
   input = new ifstream(path.c_str());
+  generateBlock();
 }
+

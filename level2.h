@@ -3,6 +3,7 @@
 #include "level.h"
 
 class Level2 : public Level {
+  void generateBlock();
   public:
     Level2(Grid* grid);
     Block* createBlock();

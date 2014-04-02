@@ -46,8 +46,7 @@ bool isCounterClockwise(const string &input) {
   return (input == "co" || input == "cou" || input == "coun" || input == "count" || input == "counte" || input == "counter" || input == "counterc" || input == "countercl" || input == "counterclo" || input == "countercloc" || input == "counterclock" || input == "counterclockw" || input == "counterclockwi" || input == "counterclockwis" || input == "counterclockwise");
 }
 
-void printBlock(Block* block) {
-  char blockType = block->getType();
+void printBlock(char blockType) {
   if (blockType == 'I') {
     cout << endl;
     cout << "IIII" << endl;
@@ -73,49 +72,62 @@ void printBlock(Block* block) {
 }
 
 
-void renderBlock(Block* block, Xwindow &w) {
-  int width   = CELL_WIDTH;
-  int height  = CELL_HEIGHT;
-  int color   = block->getColor();
-  char blockType = block->getType();
+void renderBlock(char blockType, Xwindow &w) {
+  int color;
+  if (blockType == 'S') {
+    color = Xwindow::Blue;
+  } else if (blockType == 'Z') {
+    color = Xwindow::Red;
+  } else if (blockType == 'J') {
+    color = Xwindow::Yellow;
+  } else if (blockType == 'L') {
+    color = Xwindow::Green;
+  } else if (blockType == 'I') {
+    color = Xwindow::Brown;
+  } else if (blockType == 'O') {
+    color = Xwindow::Cyan;
+  } else {
+    color = Xwindow::Orange;
+  }
+
   int yOffset = 480 + (FONT_SIZE*5);
   w.drawString(0, 480 + (FONT_SIZE*4), "Next block:", Xwindow::White);
 
   if (blockType == 'I') {
-    w.fillRectangle(0, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset, width, height, color);
-    w.fillRectangle(64, yOffset, width, height, color);
-    w.fillRectangle(96, yOffset, width, height, color);
+    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(96, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'J') {
-    w.fillRectangle(0, yOffset, width, height, color);
-    w.fillRectangle(0, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(64, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'O') {
-    w.fillRectangle(0, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset, width, height, color);
-    w.fillRectangle(0, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'L') {
-    w.fillRectangle(96, yOffset, width, height, color);
-    w.fillRectangle(0, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(64, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'S') {
-    w.fillRectangle(32, yOffset, width, height, color);
-    w.fillRectangle(64, yOffset, width, height, color);
-    w.fillRectangle(0, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'Z') {
-    w.fillRectangle(0, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
-    w.fillRectangle(64, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'T') {
-    w.fillRectangle(0, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset, width, height, color);
-    w.fillRectangle(64, yOffset, width, height, color);
-    w.fillRectangle(32, yOffset + FONT_SIZE, width, height, color);
+    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   }
 }
 
@@ -181,7 +193,7 @@ int main(int argc, char* argv[]) {
   level->setSeed( seed );
 
   Block* currentBlock = level->createBlock();
-  Block* nextBlock    = level->createBlock();
+  char nextBlockType  = level->getNextBlockType();
   int score = 0;
   int highScore = 0;
   int currentLevel = startLevel;
@@ -194,7 +206,7 @@ int main(int argc, char* argv[]) {
     cout << "Hi Score: " << highScore << endl;
     cout << grid;
     cout << "Next:" << endl;
-    printBlock( nextBlock );
+    printBlock( nextBlockType );
 
     // Start rendering the window
     grid.render( w ); // Pass the window over and the grid will render the cells onto it
@@ -217,7 +229,7 @@ int main(int argc, char* argv[]) {
     w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*3), statStream.str(), Xwindow::White);
 
     // Render the next block
-    renderBlock( nextBlock, w );
+    renderBlock( nextBlockType, w );
 
     getline(cin,s);
     if (cin.fail()) break;
@@ -281,8 +293,8 @@ int main(int argc, char* argv[]) {
 
         // The block is now dropped, generate the next one
         delete currentBlock;
-        currentBlock = nextBlock;
-        nextBlock    = level->createBlock();
+        currentBlock  = level->createBlock();
+        nextBlockType = level->getNextBlockType();
 
         // Check state of the grid and run scoring code
         int rowsCleared = grid.checkAndClearRows();
