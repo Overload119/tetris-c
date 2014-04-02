@@ -4,7 +4,7 @@
 #include "window.h"
 #include "cell.h"
 
-enum { ROWS = 18, COLUMNS = 10, SCREEN_WIDTH = 320, SCREEN_HEIGHT = 650, FONT_SIZE = 18 };
+enum { ROWS = 18, COLUMNS = 10, CELL_WIDTH = 32, CELL_HEIGHT = 32, FONT_SIZE = 18 };
 class Grid {
   Cell** cells;
   public:

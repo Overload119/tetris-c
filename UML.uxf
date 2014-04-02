@@ -23,7 +23,7 @@
 +moveDown()
 +drop()
 +validateCell(int x, int y)
-
++int getColor()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -73,6 +73,7 @@ active:bool
 +turnOff()
 +turnOn()
 +turnOn(char c)
++int getColor()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -102,7 +103,6 @@ getRandomNumber(int max): int
 /+createBlock():Block */
 #grid:Grid *
 +getNextBlockType():char
-+calculateScore():int
 +void setSeed(int n);
 +void setGrid(Grid* grid)
 
@@ -131,7 +131,7 @@ getRandomNumber(int max): int
     <panel_attributes>Level1
 --
 +createBlock()
-</panel_attributes>
++nextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -156,7 +156,7 @@ getRandomNumber(int max): int
     <panel_attributes>Level2
 --
 +createBlock()
-</panel_attributes>
++nextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -180,7 +180,8 @@ getRandomNumber(int max): int
     </coordinates>
     <panel_attributes>Level3
 --
-+createBlock()</panel_attributes>
++createBlock()
++nextBlockType()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -218,6 +219,7 @@ getRandomNumber(int max): int
 std::istream *input
 --
 +createBlock()
++nextBlockType()
 +readFromFile(std::string path)</panel_attributes>
     <additional_attributes/>
   </element>

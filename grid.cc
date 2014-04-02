@@ -37,36 +37,14 @@ void Grid::clear() {
 }
 
 void Grid::render(Xwindow &w) {
-  // Render the first 320 x 480 pixels of the screen
-  int widthPerCell  = SCREEN_WIDTH / COLUMNS;
-  int heightPerCell = 480 / (ROWS - 3); // Recall, the top 3 rows are reserved
-
-  // Paint the whole screen black
-  w.fillRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Xwindow::Black);
+  // Refresh the game screen by painting it all black before filling in individual cells
+  w.fillRectangle(0, 0, CELL_WIDTH * COLUMNS, CELL_HEIGHT * ROWS, Xwindow::Black);
 
   for (int i = 3; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
-      char cellType = cells[j][i].getChar();
-      int color;
-
-      if (cellType == 'S') {
-        color = Xwindow::Blue;
-      } else if (cellType == 'Z') {
-        color = Xwindow::Red;
-      } else if (cellType == 'J') {
-        color = Xwindow::Yellow;
-      } else if (cellType == 'L') {
-        color = Xwindow::Green;
-      } else if (cellType == 'I') {
-        color = Xwindow::Brown;
-      } else if (cellType == 'O') {
-        color = Xwindow::Cyan;
-      } else {
-        color = Xwindow::Orange;
-      }
-
+      int color = cells[j][i].getColor();
       if (cells[j][i].isActive()) {
-        w.fillRectangle(j * widthPerCell, (i-3) * heightPerCell, widthPerCell, heightPerCell, color);
+        w.fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
       }
     }
   }

@@ -7,6 +7,26 @@ Cell::Cell() {
   c = ' ';
 }
 
+int Cell::getColor() {
+  int color;
+  if (c == 'S') {
+    color = Xwindow::Blue;
+  } else if (c == 'Z') {
+    color = Xwindow::Red;
+  } else if (c == 'J') {
+    color = Xwindow::Yellow;
+  } else if (c == 'L') {
+    color = Xwindow::Green;
+  } else if (c == 'I') {
+    color = Xwindow::Brown;
+  } else if (c == 'O') {
+    color = Xwindow::Cyan;
+  } else {
+    color = Xwindow::Orange;
+  }
+  return color;
+}
+
 void Cell::setPosition(int x, int y) {
   this->x = x;
   this->y = y;

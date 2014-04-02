@@ -15,6 +15,7 @@ public:
   void drop();
   bool isCellValid(int x, int y);
   char getType();
+  int getColor();
   Block(char type, Grid *grid);
 };
 

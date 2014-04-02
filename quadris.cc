@@ -74,28 +74,12 @@ void printBlock(Block* block) {
 
 
 void renderBlock(Block* block, Xwindow &w) {
+  int width   = CELL_WIDTH;
+  int height  = CELL_HEIGHT;
+  int color   = block->getColor();
   char blockType = block->getType();
-  int width = 32;
-  int height = 32;
-  int color;
-  w.drawString(0, 480 + (FONT_SIZE*4), "Next block:", Xwindow::White);
   int yOffset = 480 + (FONT_SIZE*5);
-
-  if (blockType == 'S') {
-    color = Xwindow::Blue;
-  } else if (blockType == 'Z') {
-    color = Xwindow::Red;
-  } else if (blockType == 'J') {
-    color = Xwindow::Yellow;
-  } else if (blockType == 'L') {
-    color = Xwindow::Green;
-  } else if (blockType == 'I') {
-    color = Xwindow::Brown;
-  } else if (blockType == 'O') {
-    color = Xwindow::Cyan;
-  } else {
-    color = Xwindow::Orange;
-  }
+  w.drawString(0, 480 + (FONT_SIZE*4), "Next block:", Xwindow::White);
 
   if (blockType == 'I') {
     w.fillRectangle(0, yOffset, width, height, color);
@@ -181,7 +165,7 @@ int main(int argc, char* argv[]) {
 
   // Setup the game based on the defaults or commandline arguments
   Grid grid;
-  Xwindow w(SCREEN_WIDTH, SCREEN_HEIGHT);
+  Xwindow w(CELL_WIDTH * COLUMNS, CELL_HEIGHT * (ROWS-3) + 200);
   Level* level = NULL;
   if (startLevel == 0) {
     level = new Level0(&grid);
@@ -214,20 +198,23 @@ int main(int argc, char* argv[]) {
 
     // Start rendering the window
     grid.render( w ); // Pass the window over and the grid will render the cells onto it
-    // Render border
-    w.fillRectangle(0, 480, SCREEN_WIDTH, 2, Xwindow::White);
+    // Render the bottom border of the game area
+    w.fillRectangle(0, CELL_HEIGHT * (ROWS - 3), CELL_WIDTH * COLUMNS, 2, Xwindow::White);
 
     ostringstream statStream;
 
+    // Blank out the area below the grid
+    w.fillRectangle(0, CELL_WIDTH * (ROWS - 3) + 2, CELL_WIDTH * COLUMNS, 200, Xwindow::Black);
+
     // Render the different stats about the current state of the game
     statStream << "Level: " << currentLevel;
-    w.drawString(0, 480 + (FONT_SIZE*1), statStream.str(), Xwindow::White);
+    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*1), statStream.str(), Xwindow::White);
     statStream.str(""); // Clear the stream
     statStream << "Score: " << score;
-    w.drawString(0, 480 + (FONT_SIZE*2), statStream.str(), Xwindow::White);
+    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*2), statStream.str(), Xwindow::White);
     statStream.str(""); // Clear the stream
     statStream << "Hi Score: " << highScore;
-    w.drawString(0, 480 + (FONT_SIZE*3), statStream.str(), Xwindow::White);
+    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*3), statStream.str(), Xwindow::White);
 
     // Render the next block
     renderBlock( nextBlock, w );

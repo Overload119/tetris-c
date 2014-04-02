@@ -173,6 +173,26 @@ void Block::drop() {
   }
 }
 
+int Block::getColor() {
+  int color;
+  if (type == 'S') {
+    color = Xwindow::Blue;
+  } else if (type == 'Z') {
+    color = Xwindow::Red;
+  } else if (type == 'J') {
+    color = Xwindow::Yellow;
+  } else if (type == 'L') {
+    color = Xwindow::Green;
+  } else if (type == 'I') {
+    color = Xwindow::Brown;
+  } else if (type == 'O') {
+    color = Xwindow::Cyan;
+  } else {
+    color = Xwindow::Orange;
+  }
+  return color;
+}
+
 void Block::counterClockwise() {
   int newX[4];
   int newY[4];
