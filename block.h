@@ -6,6 +6,7 @@ class Block{
   Cell *cells[4];
   Grid *grid;
   char type;
+  int rotationPosition;
 public:
   void clockwise();
   void counterClockwise();
@@ -17,6 +18,7 @@ public:
   char getType();
   int getColor();
   Block(char type, Grid *grid);
+  int counterNumber(Cell *cells, char c);
 };
 
 #endif
