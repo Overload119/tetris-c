@@ -5,7 +5,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>700</x>
-      <y>30</y>
+      <y>20</y>
       <w>210</w>
       <h>230</h>
     </coordinates>
@@ -31,7 +31,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>940</x>
-      <y>10</y>
+      <y>0</y>
       <w>480</w>
       <h>200</h>
     </coordinates>
@@ -44,6 +44,7 @@ theCells[18][10]:Cells*
 +clearLines()
 +getCellAt(int x, int y)
 +checkAndClearRows()
++render(const Xwindow&amp; w)
 +friend std::ostream&amp; operator &lt;&lt; (std::ostream &amp;out, const Grid &amp;v);
 </panel_attributes>
     <additional_attributes/>
@@ -52,7 +53,7 @@ theCells[18][10]:Cells*
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>690</x>
-      <y>460</y>
+      <y>450</y>
       <w>210</w>
       <h>290</h>
     </coordinates>
@@ -79,7 +80,7 @@ active:bool
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>830</x>
-      <y>180</y>
+      <y>170</y>
       <w>230</w>
       <h>300</h>
     </coordinates>
@@ -90,7 +91,7 @@ active:bool
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>290</x>
-      <y>20</y>
+      <y>10</y>
       <w>240</w>
       <h>170</h>
     </coordinates>
@@ -112,7 +113,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>760</x>
-      <y>230</y>
+      <y>220</y>
       <w>50</w>
       <h>250</h>
     </coordinates>
@@ -123,7 +124,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>10</x>
-      <y>270</y>
+      <y>260</y>
       <w>230</w>
       <h>170</h>
     </coordinates>
@@ -137,7 +138,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>150</x>
-      <y>160</y>
+      <y>150</y>
       <w>250</w>
       <h>130</h>
     </coordinates>
@@ -148,7 +149,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>250</x>
-      <y>270</y>
+      <y>260</y>
       <w>230</w>
       <h>170</h>
     </coordinates>
@@ -162,7 +163,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>400</x>
-      <y>160</y>
+      <y>150</y>
       <w>60</w>
       <h>130</h>
     </coordinates>
@@ -173,7 +174,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>490</x>
-      <y>270</y>
+      <y>260</y>
       <w>230</w>
       <h>170</h>
     </coordinates>
@@ -186,7 +187,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>440</x>
-      <y>160</y>
+      <y>150</y>
       <w>200</w>
       <h>130</h>
     </coordinates>
@@ -197,7 +198,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>500</x>
-      <y>120</y>
+      <y>110</y>
       <w>220</w>
       <h>50</h>
     </coordinates>
@@ -208,7 +209,7 @@ getRandomNumber(int max): int
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>0</x>
-      <y>40</y>
+      <y>30</y>
       <w>240</w>
       <h>150</h>
     </coordinates>
@@ -224,7 +225,7 @@ std::istream *input
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>210</x>
-      <y>100</y>
+      <y>90</y>
       <w>100</w>
       <h>50</h>
     </coordinates>
