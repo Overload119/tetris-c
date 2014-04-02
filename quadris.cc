@@ -87,12 +87,23 @@ int main(int argc, char* argv[]) {
 
     if (arg == "-text") {
       textOnly = true;
-      cout << "textOnly: " << scriptFilePath << endl;
+      cout << "textOnly: " << textOnly << endl;
     } else if (arg == "-seed") {
+      // The argument after seed should be an integer
+      i++;
+      string arg( argv[i] );
+      istringstream argss(arg);
+
       argss >> seed;
       cout << "Seed set: " << seed << endl;
     } else if (arg == "-scriptfile") {
       scriptFilePath = "";
+
+      // The next word should be a script file path
+      i++;
+      string arg( argv[i] );
+      istringstream argss(arg);
+
       argss >> scriptFilePath;
       cout << "Script path: " << scriptFilePath << endl;
     } else if (arg == "-startlevel") {
