@@ -46,6 +46,33 @@ bool isCounterClockwise(const string &input) {
   return (input == "co" || input == "cou" || input == "coun" || input == "count" || input == "counte" || input == "counter" || input == "counterc" || input == "countercl" || input == "counterclo" || input == "countercloc" || input == "counterclock" || input == "counterclockw" || input == "counterclockwi" || input == "counterclockwis" || input == "counterclockwise");
 }
 
+void printBlock(Block* block) {
+  char blockType = block->getType();
+  if (blockType == 'I') {
+    cout << endl;
+    cout << "IIII" << endl;
+  } else if (blockType == 'J') {
+    cout << "J" << endl;
+    cout << "JJJ" << endl;
+  } else if (blockType == 'O') {
+    cout << "OO" << endl;
+    cout << "OO" << endl;
+  } else if (blockType == 'L') {
+    cout << "  L" << endl;
+    cout << "LLL" << endl;
+  } else if (blockType == 'S') {
+    cout << " SS" << endl;
+    cout << "SS" << endl;
+  } else if (blockType == 'Z') {
+    cout << "ZZ" << endl;
+    cout << " ZZ" << endl;
+  } else if (blockType == 'T') {
+    cout << "TTT" << endl;
+    cout << " T " << endl;
+  }
+
+}
+
 int main(int argc, char* argv[]) {
   // Read and parse the commandline arguments
   // Defaults
@@ -60,11 +87,14 @@ int main(int argc, char* argv[]) {
 
     if (arg == "-text") {
       textOnly = true;
+      cout << "textOnly: " << scriptFilePath << endl;
     } else if (arg == "-seed") {
       argss >> seed;
+      cout << "Seed set: " << seed << endl;
     } else if (arg == "-scriptfile") {
       scriptFilePath = "";
       argss >> scriptFilePath;
+      cout << "Script path: " << scriptFilePath << endl;
     } else if (arg == "-startlevel") {
       // The argument after startLevel should be an integer
       i++;
@@ -93,6 +123,7 @@ int main(int argc, char* argv[]) {
   level->setSeed( seed );
 
   Block* currentBlock = level->createBlock();
+  Block* nextBlock    = level->createBlock();
   int score = 0;
   int highScore = 0;
   int currentLevel = startLevel;
@@ -104,6 +135,8 @@ int main(int argc, char* argv[]) {
     cout << "Score:    " << score << endl;
     cout << "Hi Score: " << highScore << endl;
     cout << grid;
+    cout << "Next:" << endl;
+    printBlock( nextBlock );
 
     getline(cin,s);
     if (cin.fail()) break;
@@ -167,7 +200,8 @@ int main(int argc, char* argv[]) {
 
         // The block is now dropped, generate the next one
         delete currentBlock;
-        currentBlock = level->createBlock();
+        currentBlock = nextBlock;
+        nextBlock    = level->createBlock();
 
         // Check state of the grid and run scoring code
         int rowsCleared = grid.checkAndClearRows();
@@ -184,7 +218,7 @@ int main(int argc, char* argv[]) {
         grid.clear();
         // Resets the score and reinitializes the level
         score = 0;
-        // We should re-read the sequence file
+        // We should re-read the sequence file if we're in Level0
         if (currentLevel == 0) {
           delete level;
           level = new Level0(&grid);

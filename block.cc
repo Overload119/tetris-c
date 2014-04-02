@@ -72,6 +72,10 @@ bool Block::isCellValid(int x, int y){
   return false;
 }
 
+char Block::getType() {
+  return type;
+}
+
 // turns off new cell and points current cell to cell with x += 1
 bool Block::moveRight(){
   int newX[4];
@@ -161,7 +165,7 @@ bool Block::moveDown() {
 
 // calls moveDown() until it returns false,
 //which indicates it can't move further
-void Block::drop(){
+void Block::drop() {
   while (true){
     if (moveDown()){
       break;
@@ -169,7 +173,7 @@ void Block::drop(){
   }
 }
 
-void Block::counterClockwise(){
+void Block::counterClockwise() {
   int newX[4];
   int newY[4];
 
@@ -186,8 +190,10 @@ void Block::counterClockwise(){
     cells[i] = grid->getCellAt(newX[i], newY[i]);
     cells[i]->turnOn(type);
   }
-  return false;
+
 }
 
+void Block::clockwise() {
+}
 
 

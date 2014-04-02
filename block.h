@@ -14,6 +14,7 @@ public:
   bool moveDown();
   void drop();
   bool isCellValid(int x, int y);
+  char getType();
   Block(char type, Grid *grid);
 };
 

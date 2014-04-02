@@ -2,12 +2,11 @@
 
 using namespace std;
 
-Level1::Level1(Grid* grid):Level(grid) {
-}
+Level1::Level1(Grid* grid):Level(grid) {}
 
 Block* Level1::createBlock() {
   int n = getRandomNumber(12); // Returns a number from 0 to 11
-  char blockType; // This will throw an error if not reassigned below
+  char blockType;
 
   // There are 7 different kinds of blocks
   // 1 / 12 chance for S or Z
