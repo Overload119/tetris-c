@@ -22,7 +22,8 @@
 +moveRight()
 +moveDown()
 +drop()
-+validateCell(int x, int y)
++bool isCellValid(int x, int y)
++bool isValid()
 +int getColor()
 </panel_attributes>
     <additional_attributes/>

@@ -7,6 +7,7 @@ class Block{
   Grid *grid;
   char type;
   int rotationPosition;
+  bool validState;
 public:
   void clockwise();
   void counterClockwise();
@@ -15,6 +16,7 @@ public:
   bool moveDown();
   void drop();
   bool isCellValid(int x, int y);
+  bool isValid();
   char getType();
   int getColor();
   Block(char type, Grid *grid);

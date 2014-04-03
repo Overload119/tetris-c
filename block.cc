@@ -7,7 +7,6 @@
 using namespace std;
 
 Block::Block(char type, Grid *grid):grid(grid), type(type) {
-  cout << "creating block of type: " << type << endl;
   if (type == 'I'){
     cells[0] = grid->getCellAt(0,3);
     cells[1] = grid->getCellAt(1,3);
@@ -45,10 +44,27 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
     cells[3] = grid->getCellAt(2,4);
   }
 
-  for (int i = 0; i < 4; i++) {
-    cells[i]->turnOn( type );
-  }
+  // Before turning on the cells we've associated with this block
+  // Check if they were already turned on. If they are then this block
+  // is in an invalid state.
+  validState = true;
   rotationPosition = 0;
+  for (int i = 0; i < 4; i++) {
+    if (cells[i]->isActive()) {
+      validState = false;
+      break;
+    }
+  }
+
+  if (validState) {
+    for (int i = 0; i < 4; i++) {
+      cells[i]->turnOn( type );
+    }
+  }
+}
+
+bool Block::isValid() {
+  return validState;
 }
 
 bool Block::isCellValid(int x, int y){

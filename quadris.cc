@@ -291,11 +291,6 @@ int main(int argc, char* argv[]) {
       } else if (isDrop(command)) {
         currentBlock->drop();
 
-        // The block is now dropped, generate the next one
-        delete currentBlock;
-        currentBlock  = level->createBlock();
-        nextBlockType = level->getNextBlockType();
-
         // Check state of the grid and run scoring code
         int rowsCleared = grid.checkAndClearRows();
         if (rowsCleared > 0) {
@@ -306,6 +301,11 @@ int main(int argc, char* argv[]) {
             highScore = score;
           }
         }
+
+        // Since the block was dropped, we generate the next one
+        delete currentBlock;
+        currentBlock  = level->createBlock();
+        nextBlockType = level->getNextBlockType();
       } else if (isRestart(command)) {
         // Clear all blocks from the grid
         grid.clear();
