@@ -45,6 +45,8 @@ void Grid::render(Xwindow &w) {
       int color = cells[j][i].getColor();
       if (cells[j][i].isActive()) {
         w.fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+      } else {
+        w.fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, Xwindow::Black);
       }
     }
   }
@@ -54,7 +56,7 @@ void Grid::render(Xwindow &w) {
 // It returns the number of rows it cleared
 int Grid::checkAndClearRows() {
   int rowsToClear = 0;
-  for (int i = 0; i < ROWS; i++) {
+  for (int i = 3; i < ROWS; i++) {
     // Start off with assumption that the row is filled
     bool isRowFilled = true;
     for (int j = 0; j < COLUMNS; j++) {
