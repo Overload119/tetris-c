@@ -210,10 +210,6 @@ int Block::getColor() {
   return color;
 }
 
-int Block::counterNumber(Cell *cells, char c){
-  cout << cells->getY() << endl;
-}
-
 void Block::counterClockwise() {
   int newX[4];
   int newY[4];

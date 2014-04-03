@@ -20,7 +20,6 @@ public:
   char getType();
   int getColor();
   Block(char type, Grid *grid);
-  int counterNumber(Cell *cells, char c);
 };
 
 #endif
