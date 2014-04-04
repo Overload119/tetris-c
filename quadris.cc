@@ -335,6 +335,7 @@ int main(int argc, char* argv[]) {
         }
       }
     }
+}
 
   delete w;
   cout << "Game is over. Please try again" << endl;
