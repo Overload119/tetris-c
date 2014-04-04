@@ -7,6 +7,7 @@
 
 class Level0 : public Level {
   std::istream *input;
+  char* filePath;
   void generateBlock();
   public:
     Level0(Grid* grid);

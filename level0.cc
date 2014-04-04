@@ -5,6 +5,7 @@ using namespace std;
 Level0::Level0(Grid* grid):Level(grid) {}
 
 Level0::~Level0() {
+  delete filePath;
   delete input;
 }
 
@@ -13,9 +14,9 @@ void Level0::generateBlock() {
   char blockType = ' ';
   while (isspace(blockType)) {
     if (input->eof()) {
-      cout << "WARNING: Level0 file has been exhausted. All subsequent blocks will be of type I." << endl;
-      blockType = 'I';
-      break;
+      delete input;
+      input = new ifstream(filePath);
+      cout << "WARNING: Level0 file has been exhausted. Loop triggered." << endl;
     }
     input->get( blockType );
   }
@@ -30,7 +31,10 @@ Block* Level0::createBlock() {
 }
 
 void Level0::readFromFile(string path) {
-  input = new ifstream(path.c_str());
+  filePath = new char [path.length() + 1];
+  strcpy(filePath, path.c_str());
+
+  input = new ifstream(filePath);
   generateBlock();
 }
 
