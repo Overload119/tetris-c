@@ -1,9 +1,10 @@
 #ifndef __LEVEL_0_H__
 #define __LEVEL_0_H__
-#include <string>
+#include "level.h"
+#include <string.h>
 #include <iostream>
 #include <fstream>
-#include "level.h"
+#include <stdio.h>
 
 class Level0 : public Level {
   std::istream *input;
