@@ -50,3 +50,4 @@ Using the Factory pattern we can have each level inherit from the base Level cla
 We use a map of type string to a pointer of a function. Adding a new command just means entering the command string into the map, and creating a function which runs that command. Renaming a function is as simple as erasing the key that maps to that particular function pointer, and adding a new key with the new name. In order to accomodate for the autocomplete, use a Trie with similar functionality we did for a previous assignment. Populate the Trie with the keys of the map.
 
 
+= Simple grid clear

@@ -56,6 +56,7 @@ void Grid::render(Xwindow &w) {
 // It returns the number of rows it cleared
 int Grid::checkAndClearRows() {
   int rowsToClear = 0;
+  int lastRowToClear = 0;
   for (int i = 3; i < ROWS; i++) {
     // Start off with assumption that the row is filled
     bool isRowFilled = true;
@@ -74,24 +75,28 @@ int Grid::checkAndClearRows() {
       for (int j = 0; j < COLUMNS; j++) {
         cells[j][i].turnOff();
       }
+      lastRowToClear = i;
+      cout << "Last row to clear: " << lastRowToClear << endl;
     }
   }
-
-  cout << "rowsToClear: " << rowsToClear << endl;
 
   if (rowsToClear > 0) {
     // If we removed rows then shift all cells down until the bottom row has at least 1 active cell
     for (int k = 0; k < rowsToClear; k++) {
-      // Start from the bottom row, check the row above, and bring the values of the cells down
+      cout << "Bring row down #" << k << endl;
+      // Start from the row below the last row that was cleared.
+      // Check the row above, and bring the values of the cells down
       // Do this `rowsToClear` times
-      for (int i = ROWS - 1; i > 2; i--) {
+      for (int i = lastRowToClear; i > 2; i--) {
+        cout << "On row " << i << endl;
         for (int j = 0; j < COLUMNS; j++) {
           if (i-1 == 2) {
             // Don't look at the value directly above the first "visible" row
             cells[j][i].turnOff();
           } else {
             if (cells[j][i - 1].isActive()) {
-              cells[j][i].turnOn();
+              cells[j][i].turnOn( cells[j][i-1].getChar() );
+              cout << "-> Bringing cell down to " << i << "," << j << endl;
             } else {
               cells[j][i].turnOff();
             }
