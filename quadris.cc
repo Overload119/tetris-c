@@ -281,6 +281,7 @@ int main(int argc, char* argv[]) {
           delete level;
           if (currentLevel == 0) {
             level = new Level0(&grid);
+            static_cast<Level0*>(level)->readFromFile( scriptFilePath );
           } else if (currentLevel == 1) {
             level = new Level1(&grid);
           } else if (currentLevel == 2) {
