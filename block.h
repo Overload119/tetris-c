@@ -10,7 +10,7 @@ class Block{
   bool validState;
 public:
   void clockwise();
-  bool counterClockwise();
+  void counterClockwise();
   bool moveLeft();
   bool moveRight();
   bool moveDown();
