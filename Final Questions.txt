@@ -1,0 +1,10 @@
+1.) What lessons did this project teach you about developing software in teams? If you worked
+alone, what lessons did you learn about writing large programs?
+
+Working in a team showed us the importance of communication. No longer are you able to make changes to code without properly informing your partner of the implications of the change. Developing in a team forced us to think ahead and be more proactive with our design choices. This is certainly a big bonus and caused our code to be far more organized.
+
+Working in a team also gave us experience breaking up parts of a large project into sections that can be worked on simultaneously. It also gave us experience in merging our code together and how to handle conflicts when working on the same class. This project also gave us experience using a repository and documenting all of our changes.
+
+2.) What would you have done differently if you had the chance to start over?
+
+As we both noted later into the project, it would of been a more rubust solution if we had a couple more classes that did the work inside the quadris.cc file. That file has quite a bit of logic inside of it and more classes would of made it easier when debugging and documenting our code.
