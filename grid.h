@@ -11,7 +11,7 @@ class Grid {
     Grid();
     ~Grid();
     void clear();
-    void render(Xwindow &w);
+    void render(Xwindow* w);
     int checkAndClearRows();
     Cell* getCellAt(int x, int y);
     friend std::ostream& operator << (std::ostream &out, const Grid &v);

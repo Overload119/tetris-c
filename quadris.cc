@@ -72,7 +72,7 @@ void printBlock(char blockType) {
 }
 
 
-void renderBlock(char blockType, Xwindow &w) {
+void renderBlock(char blockType, Xwindow* w) {
   int color;
   if (blockType == 'S') {
     color = Xwindow::Blue;
@@ -91,43 +91,43 @@ void renderBlock(char blockType, Xwindow &w) {
   }
 
   int yOffset = 480 + (FONT_SIZE*5);
-  w.drawString(0, 480 + (FONT_SIZE*4), "Next block:", Xwindow::White);
+  w->drawString(0, 480 + (FONT_SIZE*4), "Next block:", Xwindow::White);
 
   if (blockType == 'I') {
-    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(96, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(96, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'J') {
-    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'O') {
-    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'L') {
-    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'S') {
-    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'Z') {
-    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   } else if (blockType == 'T') {
-    w.fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
-    w.fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(0, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(64, yOffset, CELL_WIDTH, CELL_HEIGHT, color);
+    w->fillRectangle(32, yOffset + CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
   }
 }
 
@@ -212,7 +212,7 @@ int main(int argc, char* argv[]) {
 
     if (!textOnly) {
       // Start rendering the window
-      grid.render( *w ); // Pass the window over and the grid will render the cells onto it
+      grid.render( w ); // Pass the window over and the grid will render the cells onto it
       // Render the bottom border of the game area
       w->fillRectangle(0, CELL_HEIGHT * (ROWS - 3), CELL_WIDTH * COLUMNS, 2, Xwindow::White);
 
@@ -231,7 +231,7 @@ int main(int argc, char* argv[]) {
       w->drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*3), statStream.str(), Xwindow::White);
 
       // Render the next block
-      renderBlock( nextBlockType, *w );
+      renderBlock( nextBlockType, w );
     }
 
     getline(cin,s);

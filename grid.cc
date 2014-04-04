@@ -36,17 +36,17 @@ void Grid::clear() {
   }
 }
 
-void Grid::render(Xwindow &w) {
+void Grid::render(Xwindow* w) {
   // Refresh the game screen by painting it all black before filling in individual cells
-  w.fillRectangle(0, 0, CELL_WIDTH * COLUMNS, CELL_HEIGHT * ROWS, Xwindow::Black);
+  w->fillRectangle(0, 0, CELL_WIDTH * COLUMNS, CELL_HEIGHT * ROWS, Xwindow::Black);
 
   for (int i = 3; i < ROWS; i++) {
     for (int j = 0; j < COLUMNS; j++) {
       int color = cells[j][i].getColor();
       if (cells[j][i].isActive()) {
-        w.fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
+        w->fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, color);
       } else {
-        w.fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, Xwindow::Black);
+        w->fillRectangle(j * CELL_WIDTH, (i-3) * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, Xwindow::Black);
       }
     }
   }
