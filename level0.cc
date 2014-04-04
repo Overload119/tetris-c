@@ -14,6 +14,7 @@ void Level0::generateBlock() {
   char blockType = ' ';
   while (isspace(blockType)) {
     if (input->eof()) {
+      // Loop back to the beginning of the file
       delete input;
       input = new ifstream(filePath);
     }

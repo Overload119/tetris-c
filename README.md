@@ -1,4 +1,6 @@
-tetris-c
+Tetris C++
 ========
 
-Assignment 5
+A C++ implementation of Quadris, which is just Tetris except it isn't in real time.
+
+![screenshot](screenshot.png)

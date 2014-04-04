@@ -210,6 +210,7 @@ int main(int argc, char* argv[]) {
     cout << "Next:" << endl;
     printBlock( nextBlockType );
 
+    // If the game is not textOnly, render all the graphics
     if (!textOnly) {
       // Start rendering the window
       grid.render( w ); // Pass the window over and the grid will render the cells onto it
@@ -248,8 +249,8 @@ int main(int argc, char* argv[]) {
     string command;
     iss >> command;
 
+    // Run the command a `multiplier` number of times
     for (int i = 0; i < multiplier; i++) {
-
       if (isLeft(command)) {
         currentBlock->moveLeft();
       } else if (isRight(command)) {
@@ -305,11 +306,11 @@ int main(int argc, char* argv[]) {
 
         // Since the block was dropped, we generate the next one
         delete currentBlock;
-
-
         currentBlock  = level->createBlock();
         nextBlockType = level->getNextBlockType();
 
+        // If the block was placed and was not in a valid state
+        // Then the game is over
         if (!currentBlock->isValid()){
           gameOver = false;
         }
@@ -333,10 +334,10 @@ int main(int argc, char* argv[]) {
         nextBlockType = level->getNextBlockType();
       }
     }
-}
+  }
 
-  delete w;
   cout << "Game is over. Please try again" << endl;
+  delete w;
   delete level;
   delete currentBlock;
 }

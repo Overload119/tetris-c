@@ -64,11 +64,16 @@ Block::Block(char type, Grid *grid):grid(grid), type(type) {
 }
 
 bool Block::isValid() {
+  // Determines if the block is in a valid state
+  // If it is not in a valid state, the game should end
   return validState;
 }
 
 bool Block::isCellValid(int x, int y) {
-  // Check if the cell is active (ie turned on) and does not belong to this Block
+  // Checks if a position in the grid is a valid position for this block to move in
+  // It returns true if the cell is already valid (and thus the block CANNOT move)
+  // It returns false if the cell is not valid (but block CAN move)
+
   Cell *tempCell = grid->getCellAt(x, y);
   if (tempCell == NULL) {
     return true;
