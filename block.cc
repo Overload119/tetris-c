@@ -183,11 +183,7 @@ bool Block::moveDown() {
 // calls moveDown() until it returns false,
 //which indicates it can't move further
 void Block::drop() {
-  while (true){
-    if (moveDown()) {
-      break;
-    }
-  }
+  while (!moveDown()) {}
 }
 
 int Block::getColor() {
