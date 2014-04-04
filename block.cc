@@ -210,12 +210,12 @@ int Block::getColor() {
   return color;
 }
 
-void Block::counterClockwise() {
+bool Block::counterClockwise() {
   int newX[4];
   int newY[4];
   char c = cells[1]->getChar();
     if (c == 'O'){
-      return;
+      return false;
     } else if (c == 'I'){
       if ((rotationPosition % 2) == 0){
         newX[0] = cells[0]->getX();
@@ -412,6 +412,15 @@ void Block::counterClockwise() {
 
         rotationPosition += 1;
         rotationPosition = rotationPosition % 4;
+bool answer;
+
+  for (int i = 0; i < 4; i++){
+      answer = isCellValid(newX[i], newY[i]);
+      if (answer){
+        rotationPosition -= 1;
+        return answer;
+      }
+  }
 
   // Turn of the cells for the block since
   // the cells are about to be updated
@@ -424,7 +433,7 @@ void Block::counterClockwise() {
     cells[i] = grid->getCellAt(newX[i], newY[i]);
     cells[i]->turnOn(type);
   }
-
+  return false;
 }
 
 void Block::clockwise() {
