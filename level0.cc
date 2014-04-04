@@ -16,7 +16,6 @@ void Level0::generateBlock() {
     if (input->eof()) {
       delete input;
       input = new ifstream(filePath);
-      cout << "WARNING: Level0 file has been exhausted. Loop triggered." << endl;
     }
     input->get( blockType );
   }

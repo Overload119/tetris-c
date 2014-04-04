@@ -145,7 +145,6 @@ int main(int argc, char* argv[]) {
 
     if (arg == "-text") {
       textOnly = true;
-      cout << "textOnly: " << textOnly << endl;
     } else if (arg == "-seed") {
       // The argument after seed should be an integer
       i++;
@@ -153,7 +152,6 @@ int main(int argc, char* argv[]) {
       istringstream argss(arg);
 
       argss >> seed;
-      cout << "Seed set: " << seed << endl;
     } else if (arg == "-scriptfile") {
       scriptFilePath = "";
 
@@ -163,15 +161,12 @@ int main(int argc, char* argv[]) {
       istringstream argss(arg);
 
       argss >> scriptFilePath;
-      cout << "Script path: " << scriptFilePath << endl;
     } else if (arg == "-startlevel") {
       // The argument after startLevel should be an integer
       i++;
       string arg( argv[i] );
       istringstream argss(arg);
       argss >> startLevel;
-      // cout << argv[i] << endl;
-      // cout << "opt:startLevel " << startLevel << endl;
     }
   }
 
@@ -252,9 +247,6 @@ int main(int argc, char* argv[]) {
 
     string command;
     iss >> command;
-
-    cout << "Multiplier: " << multiplier << endl;
-    cout << "Reading command: " << command << endl;
 
     for (int i = 0; i < multiplier; i++) {
 

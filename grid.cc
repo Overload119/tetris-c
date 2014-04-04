@@ -76,19 +76,16 @@ int Grid::checkAndClearRows() {
         cells[j][i].turnOff();
       }
       lastRowToClear = i;
-      cout << "Last row to clear: " << lastRowToClear << endl;
     }
   }
 
   if (rowsToClear > 0) {
     // If we removed rows then shift all cells down until the bottom row has at least 1 active cell
     for (int k = 0; k < rowsToClear; k++) {
-      cout << "Bring row down #" << k << endl;
       // Start from the row below the last row that was cleared.
       // Check the row above, and bring the values of the cells down
       // Do this `rowsToClear` times
       for (int i = lastRowToClear; i > 2; i--) {
-        cout << "On row " << i << endl;
         for (int j = 0; j < COLUMNS; j++) {
           if (i-1 == 2) {
             // Don't look at the value directly above the first "visible" row
@@ -96,7 +93,6 @@ int Grid::checkAndClearRows() {
           } else {
             if (cells[j][i - 1].isActive()) {
               cells[j][i].turnOn( cells[j][i-1].getChar() );
-              cout << "-> Bringing cell down to " << i << "," << j << endl;
             } else {
               cells[j][i].turnOff();
             }
