@@ -184,7 +184,7 @@ bool Block::moveDown() {
 //which indicates it can't move further
 void Block::drop() {
   while (true){
-    if (moveDown()){
+    if (moveDown()) {
       break;
     }
   }
@@ -438,7 +438,7 @@ bool answer;
 
 void Block::clockwise() {
   for (int i = 0; i < 3; i++){
-      counterClockwise();
+    counterClockwise();
   }
 }
 

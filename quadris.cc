@@ -325,6 +325,11 @@ int main(int argc, char* argv[]) {
           // Level0 contains the readFromFile method
           static_cast<Level0*>(level)->readFromFile( scriptFilePath );
         }
+
+        // The grid was cleared, all blocks were removed so create a new one
+        delete currentBlock;
+        currentBlock  = level->createBlock();
+        nextBlockType = level->getNextBlockType();
       }
     }
 }
