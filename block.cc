@@ -211,7 +211,7 @@ void Block::counterClockwise() {
   int newY[4];
   char c = cells[1]->getChar();
   if (c == 'O') {
-    return false;
+    return; // An 'O' block cannot be rotated
   } else if (c == 'I'){
     if ((rotationPosition % 2) == 0){
       newX[0] = cells[0]->getX();
@@ -406,18 +406,19 @@ void Block::counterClockwise() {
     }
   }
 
-  rotationPosition += 1;
-  rotationPosition = rotationPosition % 4;
-
   for (int i = 0; i < 4; i++){
-    cell = isCellValid(newX[i], newY[i]);
-    if (cell) {
-      rotationPosition -= 1;
+    bool cannotRotate = isCellValid(newX[i], newY[i]);
+    if (cannotRotate) {
+      // The cell is active and/or not part of this block
+      // We shouldn't rotate, so return.
       return;
     }
   }
 
-  // Turn of the cells for the block since
+  rotationPosition += 1;
+  rotationPosition = rotationPosition % 4;
+
+  // Turn off the cells for the block since
   // the cells are about to be updated
   for (int i = 0; i < 4; i++) {
     cells[i]->turnOff();
@@ -428,7 +429,6 @@ void Block::counterClockwise() {
     cells[i] = grid->getCellAt(newX[i], newY[i]);
     cells[i]->turnOn(type);
   }
-  return false;
 }
 
 void Block::clockwise() {
