@@ -203,9 +203,11 @@ int main(int argc, char* argv[]) {
   int highScore = 0;
   int currentLevel = startLevel;
 
+  bool gameOver = true;
+
   string s;
 
-  while(1) {
+  while(gameOver) {
     cout << "Level:    " << currentLevel << endl;
     cout << "Score:    " << score << endl;
     cout << "Hi Score: " << highScore << endl;
@@ -310,8 +312,15 @@ int main(int argc, char* argv[]) {
 
         // Since the block was dropped, we generate the next one
         delete currentBlock;
+
+
         currentBlock  = level->createBlock();
         nextBlockType = level->getNextBlockType();
+
+        if (!currentBlock->isValid()){
+          gameOver = false;
+        }
+
       } else if (isRestart(command)) {
         // Clear all blocks from the grid
         grid.clear();
@@ -327,9 +336,8 @@ int main(int argc, char* argv[]) {
       }
     }
 
-  }
-
   delete w;
+  cout << "Game is over. Please try again" << endl;
   delete level;
   delete currentBlock;
 }
