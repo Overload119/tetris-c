@@ -7,6 +7,7 @@
 using namespace std;
 
 Block::Block(char type, Grid *grid):grid(grid), type(type) {
+//initialize starting locations for each type of block
   if (type == 'I'){
     cells[0] = grid->getCellAt(0,3);
     cells[1] = grid->getCellAt(1,3);
@@ -81,6 +82,7 @@ bool Block::isCellValid(int x, int y) {
 
   bool cellIsActive = tempCell->isActive();
   bool cellIsInSelf = false;
+  //checks if the new cell is inside of itself
   for (int j = 0; j < 4; j++) {
     if (tempCell == cells[j]) {
       cellIsInSelf = true;
@@ -108,6 +110,7 @@ bool Block::moveRight(){
     newX[i] = cells[i]->getX() + 1;
     newY[i] = cells[i]->getY();
     answer = isCellValid(newX[i], newY[i]);
+    //if desired cell is either previously occupied or out of range then return true
     if (answer){
       return answer;
     }
@@ -138,6 +141,7 @@ bool Block::moveLeft(){
     newX[i] = cells[i]->getX() - 1;
     newY[i] = cells[i]->getY();
     answer = isCellValid(newX[i], newY[i]);
+    //if desired cell is either previously occupied or out of range then return true
     if (answer){
       return answer;
     }
@@ -166,12 +170,13 @@ bool Block::moveDown() {
     newX[i] = cells[i]->getX();
     newY[i] = cells[i]->getY() + 1;
     answer = isCellValid(newX[i], newY[i]);
+    //if desired cell is either previously occupied or out of range then return true
     if (answer){
       return answer;
     }
   }
 
-  // Turn of the cells for the block since
+  // Turn off the cells for the block since
   // the cells are about to be updated
   for (int i = 0; i < 4; i++) {
     cells[i]->turnOff();
@@ -238,6 +243,7 @@ void Block::counterClockwise() {
       newY[3] = cells[3]->getY() +3;
     }
   } else if (c == 'Z'){
+    // only two positions possible for rotate
     if ((rotationPosition % 2) == 0){
       newX[0] = cells[0]->getX();
       newY[0] = cells[0]->getY()+1;
@@ -436,6 +442,8 @@ void Block::counterClockwise() {
   }
 }
 
+//same code as counterClockwise but runs it 3 times to mimic clockwise
+//rotation
 void Block::clockwise() {
   for (int i = 0; i < 3; i++){
     counterClockwise();
