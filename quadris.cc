@@ -134,7 +134,7 @@ void renderBlock(char blockType, Xwindow &w) {
 int main(int argc, char* argv[]) {
   // Read and parse the commandline arguments
   // Defaults
-  bool textOnly         = true; // Set this to false by default
+  bool textOnly         = false; // Set this to false by default
   int seed              = 1337;
   string scriptFilePath = "sequence.txt";
   int startLevel        = 0;
@@ -177,7 +177,12 @@ int main(int argc, char* argv[]) {
 
   // Setup the game based on the defaults or commandline arguments
   Grid grid;
-  Xwindow w(CELL_WIDTH * COLUMNS, CELL_HEIGHT * (ROWS-3) + 200);
+
+  Xwindow* w;
+  if (!textOnly) {
+    w = new Xwindow(CELL_WIDTH * COLUMNS, CELL_HEIGHT * (ROWS-3) + 200);
+  }
+
   Level* level = NULL;
   if (startLevel == 0) {
     level = new Level0(&grid);
@@ -208,28 +213,29 @@ int main(int argc, char* argv[]) {
     cout << "Next:" << endl;
     printBlock( nextBlockType );
 
-    // Start rendering the window
-    grid.render( w ); // Pass the window over and the grid will render the cells onto it
-    // Render the bottom border of the game area
-    w.fillRectangle(0, CELL_HEIGHT * (ROWS - 3), CELL_WIDTH * COLUMNS, 2, Xwindow::White);
+    if (!textOnly) {
+      // Start rendering the window
+      grid.render( *w ); // Pass the window over and the grid will render the cells onto it
+      // Render the bottom border of the game area
+      w->fillRectangle(0, CELL_HEIGHT * (ROWS - 3), CELL_WIDTH * COLUMNS, 2, Xwindow::White);
 
-    ostringstream statStream;
+      ostringstream statStream;
+      // Blank out the area below the grid
+      w->fillRectangle(0, CELL_WIDTH * (ROWS - 3) + 2, CELL_WIDTH * COLUMNS, 200, Xwindow::Black);
 
-    // Blank out the area below the grid
-    w.fillRectangle(0, CELL_WIDTH * (ROWS - 3) + 2, CELL_WIDTH * COLUMNS, 200, Xwindow::Black);
+      // Render the different stats about the current state of the game
+      statStream << "Level: " << currentLevel;
+      w->drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*1), statStream.str(), Xwindow::White);
+      statStream.str(""); // Clear the stream
+      statStream << "Score: " << score;
+      w->drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*2), statStream.str(), Xwindow::White);
+      statStream.str(""); // Clear the stream
+      statStream << "Hi Score: " << highScore;
+      w->drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*3), statStream.str(), Xwindow::White);
 
-    // Render the different stats about the current state of the game
-    statStream << "Level: " << currentLevel;
-    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*1), statStream.str(), Xwindow::White);
-    statStream.str(""); // Clear the stream
-    statStream << "Score: " << score;
-    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*2), statStream.str(), Xwindow::White);
-    statStream.str(""); // Clear the stream
-    statStream << "Hi Score: " << highScore;
-    w.drawString(0, CELL_WIDTH * (ROWS - 3) + (FONT_SIZE*3), statStream.str(), Xwindow::White);
-
-    // Render the next block
-    renderBlock( nextBlockType, w );
+      // Render the next block
+      renderBlock( nextBlockType, *w );
+    }
 
     getline(cin,s);
     if (cin.fail()) break;
@@ -323,6 +329,7 @@ int main(int argc, char* argv[]) {
 
   }
 
+  delete w;
   delete level;
   delete currentBlock;
 }
